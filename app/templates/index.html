@@ -4,30 +4,25 @@
 {% block content %}
 <section class="hero">
   <div class="hero-left">
-    <h1>为每一位用户<br><em>挑出真正想看的内容</em></h1>
-    <p class="sub">
-      基于 MovieLens、Goodbooks-10k 与 Book-Crossing 公开数据集，融合<strong>多视图图卷积</strong>、
-      <strong>内容画像召回</strong>、<strong>多路融合排序</strong>与<strong>MMR 多样性重排</strong>，
-      在离线阶段完成训练与评测，线上以查表方式提供毫秒级推荐。
-    </p>
+    <h1 data-i18n="home.h1">为每一位用户<br><em>挑出真正想看的内容</em></h1>
     <div class="hero-actions">
-      <a class="btn primary" href="/recommend?dataset={{ dataset }}">体验个性化推荐</a>
-      <a class="btn ghost" href="/dashboard?dataset={{ dataset }}">查看算法对比</a>
+      <a class="btn primary" href="/recommend?dataset={{ dataset }}" data-i18n="home.cta1">体验个性化推荐</a>
+      <a class="btn ghost" href="/dashboard?dataset={{ dataset }}" data-i18n="home.cta2">查看算法对比</a>
     </div>
     <div class="stat-row" id="statRow">
-      <div class="stat"><b id="statItems">—</b><span>物品数</span></div>
-      <div class="stat"><b id="statUsers">—</b><span>用户数</span></div>
-      <div class="stat"><b id="statRatings">—</b><span>评分数</span></div>
+      <div class="stat"><b id="statItems">—</b><span data-i18n="stat.items">物品数</span></div>
+      <div class="stat"><b id="statUsers">—</b><span data-i18n="stat.users">用户数</span></div>
+      <div class="stat"><b id="statRatings">—</b><span data-i18n="stat.ratings">评分数</span></div>
     </div>
   </div>
   <div class="hero-right">
     <div class="glass-card">
-      <div class="gc-title">推荐流水线</div>
+      <div class="gc-title" data-i18n="home.pipeline">推荐流水线</div>
       <ol class="pipeline">
-        <li><i>1</i><div><b>多路召回</b><span>FREEDOM 多视图 / LightGCN / 内容画像 / 热度榜</span></div></li>
-        <li><i>2</i><div><b>融合排序</b><span>多源候选合并去重 + 分数归一</span></div></li>
-        <li><i>3</i><div><b>重排与解释</b><span>MMR 多样性约束 + 大模型/模板推荐理由</span></div></li>
-        <li><i>4</i><div><b>在线服务</b><span>离线预计算落库，接口毫秒级响应</span></div></li>
+        <li><i>1</i><div><b data-i18n="pipe.1.t">多路召回</b><span data-i18n="pipe.1.d">FREEDOM 多视图 / LightGCN / 内容画像 / 热度榜</span></div></li>
+        <li><i>2</i><div><b data-i18n="pipe.2.t">融合排序</b><span data-i18n="pipe.2.d">多源候选合并去重 + 分数归一</span></div></li>
+        <li><i>3</i><div><b data-i18n="pipe.3.t">重排与解释</b><span data-i18n="pipe.3.d">MMR 多样性约束 + 大模型/模板推荐理由</span></div></li>
+        <li><i>4</i><div><b data-i18n="pipe.4.t">在线服务</b><span data-i18n="pipe.4.d">离线预计算落库，接口毫秒级响应</span></div></li>
       </ol>
     </div>
   </div>
@@ -35,13 +30,13 @@
 
 <section class="section">
   <div class="section-head">
-    <h2>热门内容</h2>
+    <h2 data-i18n="home.popular">热门内容</h2>
     <div class="chips" id="genreChips">
-      <button class="chip on" data-genre="">全部</button>
+      <button class="chip on" data-genre="" data-i18n="chip.all">全部</button>
     </div>
   </div>
   <div class="grid" id="itemGrid">
-    <div class="loading">加载中…</div>
+    <div class="loading" data-i18n="dyn.loading">加载中…</div>
   </div>
 </section>
 {% endblock %}

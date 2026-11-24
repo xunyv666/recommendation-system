@@ -15,6 +15,12 @@
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
     }[c]));
 
+  /* 文案取词：默认英文，I18N 不可用时回落到中文 */
+  const T = (k, zh) => (window.I18N ? I18N.t(k, zh) : zh);
+  const Tf = (k, zh, vars) =>
+    T(k, zh).replace(/\{(\w+)\}/g, (_, n) => (vars[n] != null ? vars[n] : ""));
+  const RSN = (s) => (window.I18N ? I18N.reason(s) : s);
+
   async function get(url) {
     const r = await fetch(url);
     if (!r.ok) throw new Error("HTTP " + r.status);
@@ -72,7 +78,7 @@
     body.appendChild(meta);
 
     if (opts.showReason && item.reason)
-      body.appendChild(el("div", "reason", esc(item.reason)));
+      body.appendChild(el("div", "reason", esc(RSN(item.reason))));
 
     a.appendChild(body);
 
@@ -92,7 +98,7 @@
   function renderGrid(target, items, opts = {}) {
     target.innerHTML = "";
     if (!items || !items.length) {
-      target.appendChild(el("div", "empty", "暂无数据"));
+      target.appendChild(el("div", "empty", T("dyn.empty", "暂无数据")));
       return;
     }
     items.forEach((it, i) => target.appendChild(card(it, { ...opts, rank: i + 1 })));
@@ -127,14 +133,14 @@
 
   async function loadPopular(genre) {
     const grid = $("#itemGrid");
-    grid.innerHTML = '<div class="loading">加载中…</div>';
+    grid.innerHTML = '<div class="loading">' + esc(T("dyn.loading", "加载中…")) + '</div>';
     const q = new URLSearchParams({ dataset: DS, k: 24 });
     if (genre) q.set("genre", genre);
     try {
       const d = await get("/api/popular?" + q);
       renderGrid(grid, d.items, { showScore: false });
     } catch (e) {
-      grid.innerHTML = '<div class="empty">加载失败</div>';
+      grid.innerHTML = '<div class="empty">' + esc(T("dyn.failed", "加载失败")) + '</div>';
     }
   }
 
@@ -154,7 +160,9 @@
       const d = await get(`/api/users?dataset=${DS}&limit=200`);
       const dense = (d.users || []).filter((u) => u.n_ratings >= 20).slice(0, 30);
       (dense.length ? dense : d.users || []).forEach((u) => {
-        const o = el("option", "", `用户 ${u.user_id}（${u.n_ratings} 条评分）`);
+        const o = el("option", "", esc(Tf("dyn.userOption", "用户 {id}（{n} 条评分）", {
+          id: u.user_id, n: u.n_ratings,
+        })));
         o.value = u.user_id;
         userSel.appendChild(o);
       });
@@ -169,7 +177,7 @@
       const algo = $("#algoSelect").value;
       const k = $("#kSelect").value;
       const grid = $("#recGrid");
-      grid.innerHTML = '<div class="loading">计算中…</div>';
+      grid.innerHTML = '<div class="loading">' + esc(T("dyn.computing", "计算中…")) + '</div>';
       $("#sourceLine").textContent = "";
 
       try {
@@ -178,10 +186,11 @@
         );
         renderGrid(grid, d.items, { showReason: true, showScore: true, userId: uid, algo });
         $("#sourceLine").innerHTML =
-          `召回来源：<b>${esc(d.source)}</b> · 用户 ${esc(uid)} · 算法 ${esc(algo)}`;
+          `${esc(T("dyn.sourceLine", "召回来源："))} <b>${esc(d.source)}</b> · ` +
+          `${esc(T("rec.user", "用户"))} ${esc(uid)} · ${esc(T("rec.algo", "算法"))} ${esc(algo)}`;
         loadHistory(uid);
       } catch (e) {
-        grid.innerHTML = '<div class="empty">推荐失败</div>';
+        grid.innerHTML = '<div class="empty">' + esc(T("dyn.recFailed", "推荐失败")) + '</div>';
       }
     };
 
@@ -207,9 +216,10 @@
         n.appendChild(el("span", "stars", `${stars(it.user_rating)} ${Number(it.user_rating).toFixed(1)}`));
         box.appendChild(n);
       });
-      if (!d.items || !d.items.length) box.innerHTML = '<div class="empty">暂无行为记录</div>';
+      if (!d.items || !d.items.length)
+        box.innerHTML = '<div class="empty">' + esc(T("dyn.noHistory", "暂无行为记录")) + '</div>';
     } catch (e) {
-      box.innerHTML = '<div class="empty">暂无行为记录</div>';
+      box.innerHTML = '<div class="empty">' + esc(T("dyn.noHistory", "暂无行为记录")) + '</div>';
     }
   }
 
@@ -233,20 +243,20 @@
               ${d.year ? `<span class="tag">${esc(d.year)}</span>` : ""}
             </div>
             <div class="kv">
-              <div><span>平均评分</span><b>${Number(d.rating_avg || 0).toFixed(2)}</b></div>
-              <div><span>评分人数</span><b>${Number(d.rating_count || 0).toLocaleString()}</b></div>
-              <div><span>热度分</span><b>${Number(d.popularity || 0).toFixed(4)}</b></div>
-              <div><span>物品 ID</span><b>${d.id}</b></div>
+              <div><span>${esc(T("dyn.avgRating", "平均评分"))}</span><b>${Number(d.rating_avg || 0).toFixed(2)}</b></div>
+              <div><span>${esc(T("dyn.ratingCount", "评分人数"))}</span><b>${Number(d.rating_count || 0).toLocaleString()}</b></div>
+              <div><span>${esc(T("dyn.popularity", "热度分"))}</span><b>${Number(d.popularity || 0).toFixed(4)}</b></div>
+              <div><span>${esc(T("dyn.itemId", "物品 ID"))}</span><b>${d.id}</b></div>
             </div>
-            <p class="muted">${esc(d.description || "该物品暂无简介。")}</p>
+            <p class="muted">${esc(d.description || T("dyn.noDesc", "该物品暂无简介。"))}</p>
           </div>
         </div>
-        <div class="section-head" style="margin-top:46px"><h2>内容相似的物品</h2>
-          <p class="muted">基于文本语义 + 类别 + 结构化特征的三视图余弦相似度</p></div>
+        <div class="section-head" style="margin-top:46px"><h2>${esc(T("dyn.similar", "内容相似的物品"))}</h2>
+          <p class="muted">${esc(T("dyn.similarDesc", "基于文本语义 + 类别 + 结构化特征的三视图余弦相似度"))}</p></div>
         <div class="grid" id="simGrid"></div>`;
       renderGrid($("#simGrid"), d.similar, { showScore: true });
     } catch (e) {
-      root.innerHTML = '<div class="empty">物品不存在或已下线</div>';
+      root.innerHTML = '<div class="empty">' + esc(T("dyn.itemMissing", "物品不存在或已下线")) + '</div>';
     }
   }
 
@@ -258,8 +268,9 @@
       const d = await get(`/api/metrics?dataset=${DS}`);
       const entries = Object.entries(d.metrics || {});
       if (!entries.length) {
-        tbody.innerHTML = '<tr><td colspan="6" class="empty">暂无实验数据，请先运行基准脚本</td></tr>';
-        bars.innerHTML = '<div class="empty">暂无数据</div>';
+        tbody.innerHTML = '<tr><td colspan="6" class="empty">' +
+          esc(T("dyn.noMetrics", "暂无实验数据，请先运行基准脚本")) + '</td></tr>';
+        bars.innerHTML = '<div class="empty">' + esc(T("dyn.empty", "暂无数据")) + '</div>';
         return;
       }
       const rows = entries.map(([m, v]) => ({
@@ -292,7 +303,8 @@
           <span class="val">${r.ndcg.toFixed(4)}</span>
         </div>`).join("");
     } catch (e) {
-      tbody.innerHTML = '<tr><td colspan="6" class="empty">加载失败</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="6" class="empty">' +
+        esc(T("dyn.failed", "加载失败")) + '</td></tr>';
     }
   }
 
@@ -307,10 +319,10 @@
 
   fetch("/api/health").then((r) => r.json()).then(() => {
     const t = $("#healthTag");
-    if (t) t.textContent = "服务正常";
+    if (t) t.textContent = T("dyn.healthy", "服务正常");
   }).catch(() => {
     const t = $("#healthTag");
-    if (t) { t.textContent = "服务离线"; t.style.color = "#fbbf24"; }
+    if (t) { t.textContent = T("dyn.offline", "服务离线"); t.style.color = "#fbbf24"; }
   });
 
   window.App = { initHome, initRecommend, initDetail, initDashboard };

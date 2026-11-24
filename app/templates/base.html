@@ -13,17 +13,17 @@
   <div class="wrap topbar-inner">
     <a class="brand" href="/?dataset={{ dataset }}">
       <span class="brand-mark">RS</span>
-      <span class="brand-text">智能推荐系统<small>Courses Design 2026</small></span>
+      <span class="brand-text" data-i18n="brand">智能推荐系统<small>Courses Design 2026</small></span>
     </a>
     <nav class="nav">
-      <a href="/?dataset={{ dataset }}"   class="{{ 'on' if page=='home' }}">首页</a>
-      <a href="/recommend?dataset={{ dataset }}" class="{{ 'on' if page=='recommend' }}">个性化推荐</a>
-      <a href="/dashboard?dataset={{ dataset }}" class="{{ 'on' if page=='dashboard' }}">算法看板</a>
-      <a href="/about" class="{{ 'on' if page=='about' }}">关于</a>
+      <a href="/?dataset={{ dataset }}"   class="{{ 'on' if page=='home' }}" data-i18n="nav.home">首页</a>
+      <a href="/recommend?dataset={{ dataset }}" class="{{ 'on' if page=='recommend' }}" data-i18n="nav.recommend">个性化推荐</a>
+      <a href="/dashboard?dataset={{ dataset }}" class="{{ 'on' if page=='dashboard' }}" data-i18n="nav.dashboard">算法看板</a>
+      <a href="/about" class="{{ 'on' if page=='about' }}" data-i18n="nav.about">关于</a>
     </nav>
     <div class="domain-switch">
-      <button data-ds="movielens" class="{{ 'on' if dataset=='movielens' }}">电影</button>
-      <button data-ds="goodbooks" class="{{ 'on' if dataset=='goodbooks' }}">图书</button>
+      <button data-ds="movielens" class="{{ 'on' if dataset=='movielens' }}" data-i18n="ds.movie">电影</button>
+      <button data-ds="goodbooks" class="{{ 'on' if dataset=='goodbooks' }}" data-i18n="ds.book">图书</button>
     </div>
   </div>
 </header>
@@ -34,14 +34,15 @@
 
 <footer class="footer">
   <div class="wrap">
-    <span>推荐系统课程设计 · 南京财经大学</span>
+    <span data-i18n="footer.course">推荐系统课程设计 · 南京财经大学</span>
     <span class="dot">·</span>
-    <span>离线训练 + 在线查表架构</span>
+    <span data-i18n="footer.arch">离线训练 + 在线查表架构</span>
     <span class="dot">·</span>
-    <span id="healthTag">服务状态检测中…</span>
+    <span id="healthTag" data-i18n="health.checking">服务状态检测中…</span>
   </div>
 </footer>
 
+<script src="{{ url_for('static', filename='js/i18n.js') }}"></script>
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 {% block scripts %}{% endblock %}
 </body>

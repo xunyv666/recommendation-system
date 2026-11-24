@@ -13,17 +13,17 @@
   <div class="wrap topbar-inner">
     <a class="brand" href="/?dataset=movielens">
       <span class="brand-mark">RS</span>
-      <span class="brand-text">智能推荐系统<small>Courses Design 2026</small></span>
+      <span class="brand-text" data-i18n="brand">智能推荐系统<small>Courses Design 2026</small></span>
     </a>
     <nav class="nav">
-      <a href="/?dataset=movielens"   class="">首页</a>
-      <a href="/recommend?dataset=movielens" class="">个性化推荐</a>
-      <a href="/dashboard?dataset=movielens" class="on">算法看板</a>
-      <a href="/about" class="">关于</a>
+      <a href="/?dataset=movielens"   class="" data-i18n="nav.home">首页</a>
+      <a href="/recommend?dataset=movielens" class="" data-i18n="nav.recommend">个性化推荐</a>
+      <a href="/dashboard?dataset=movielens" class="on" data-i18n="nav.dashboard">算法看板</a>
+      <a href="/about" class="" data-i18n="nav.about">关于</a>
     </nav>
     <div class="domain-switch">
-      <button data-ds="movielens" class="on">电影</button>
-      <button data-ds="goodbooks" class="">图书</button>
+      <button data-ds="movielens" class="on" data-i18n="ds.movie">电影</button>
+      <button data-ds="goodbooks" class="" data-i18n="ds.book">图书</button>
     </div>
   </div>
 </header>
@@ -33,25 +33,25 @@
 <section class="section">
   <div class="section-head">
     <div>
-      <h2>算法效果看板</h2>
-      <p class="muted">同一数据切分下的全排序评测结果（8:1:1 时间序切分，Top-10 全量排序）</p>
+      <h2 data-i18n="dash.h2">算法效果看板</h2>
+      <p class="muted" data-i18n="dash.desc">同一数据切分下的全排序评测结果（8:1:1 时间序切分，Top-10 全量排序）</p>
     </div>
   </div>
   <div class="table-wrap">
     <table class="table" id="metricTable">
       <thead>
         <tr>
-          <th>模型</th><th>Recall@10</th><th>NDCG@10</th><th>MRR@10</th>
-          <th>Precision@10</th><th>训练耗时(s)</th>
+          <th data-i18n="th.model">模型</th><th>Recall@10</th><th>NDCG@10</th><th>MRR@10</th>
+          <th>Precision@10</th><th data-i18n="th.time">训练耗时(s)</th>
         </tr>
       </thead>
-      <tbody><tr><td colspan="6" class="loading">加载中…</td></tr></tbody>
+      <tbody><tr><td colspan="6" class="loading" data-i18n="dyn.loading">加载中…</td></tr></tbody>
     </table>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-head"><h2>NDCG@10 对比</h2></div>
+  <div class="section-head"><h2 data-i18n="dash.chart">NDCG@10 对比</h2></div>
   <div class="bars" id="ndcgBars"></div>
 </section>
 
@@ -59,14 +59,15 @@
 
 <footer class="footer">
   <div class="wrap">
-    <span>推荐系统课程设计 · 南京财经大学</span>
+    <span data-i18n="footer.course">推荐系统课程设计 · 南京财经大学</span>
     <span class="dot">·</span>
-    <span>离线训练 + 在线查表架构</span>
+    <span data-i18n="footer.arch">离线训练 + 在线查表架构</span>
     <span class="dot">·</span>
-    <span id="healthTag">服务状态检测中…</span>
+    <span id="healthTag" data-i18n="health.checking">服务状态检测中…</span>
   </div>
 </footer>
 
+<script src="/static/js/i18n.js"></script>
 <script src="/static/js/static-api.js"></script>
 <script src="/static/js/app.js"></script>
 

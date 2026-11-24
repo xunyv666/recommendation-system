@@ -13,17 +13,17 @@
   <div class="wrap topbar-inner">
     <a class="brand" href="/?dataset=movielens">
       <span class="brand-mark">RS</span>
-      <span class="brand-text">智能推荐系统<small>Courses Design 2026</small></span>
+      <span class="brand-text" data-i18n="brand">智能推荐系统<small>Courses Design 2026</small></span>
     </a>
     <nav class="nav">
-      <a href="/?dataset=movielens"   class="on">首页</a>
-      <a href="/recommend?dataset=movielens" class="">个性化推荐</a>
-      <a href="/dashboard?dataset=movielens" class="">算法看板</a>
-      <a href="/about" class="">关于</a>
+      <a href="/?dataset=movielens"   class="on" data-i18n="nav.home">首页</a>
+      <a href="/recommend?dataset=movielens" class="" data-i18n="nav.recommend">个性化推荐</a>
+      <a href="/dashboard?dataset=movielens" class="" data-i18n="nav.dashboard">算法看板</a>
+      <a href="/about" class="" data-i18n="nav.about">关于</a>
     </nav>
     <div class="domain-switch">
-      <button data-ds="movielens" class="on">电影</button>
-      <button data-ds="goodbooks" class="">图书</button>
+      <button data-ds="movielens" class="on" data-i18n="ds.movie">电影</button>
+      <button data-ds="goodbooks" class="" data-i18n="ds.book">图书</button>
     </div>
   </div>
 </header>
@@ -32,30 +32,25 @@
   
 <section class="hero">
   <div class="hero-left">
-    <h1>为每一位用户<br><em>挑出真正想看的内容</em></h1>
-    <p class="sub">
-      基于 MovieLens、Goodbooks-10k 与 Book-Crossing 公开数据集，融合<strong>多视图图卷积</strong>、
-      <strong>内容画像召回</strong>、<strong>多路融合排序</strong>与<strong>MMR 多样性重排</strong>，
-      在离线阶段完成训练与评测，线上以查表方式提供毫秒级推荐。
-    </p>
+    <h1 data-i18n="home.h1">为每一位用户<br><em>挑出真正想看的内容</em></h1>
     <div class="hero-actions">
-      <a class="btn primary" href="/recommend?dataset=movielens">体验个性化推荐</a>
-      <a class="btn ghost" href="/dashboard?dataset=movielens">查看算法对比</a>
+      <a class="btn primary" href="/recommend?dataset=movielens" data-i18n="home.cta1">体验个性化推荐</a>
+      <a class="btn ghost" href="/dashboard?dataset=movielens" data-i18n="home.cta2">查看算法对比</a>
     </div>
     <div class="stat-row" id="statRow">
-      <div class="stat"><b id="statItems">—</b><span>物品数</span></div>
-      <div class="stat"><b id="statUsers">—</b><span>用户数</span></div>
-      <div class="stat"><b id="statRatings">—</b><span>评分数</span></div>
+      <div class="stat"><b id="statItems">—</b><span data-i18n="stat.items">物品数</span></div>
+      <div class="stat"><b id="statUsers">—</b><span data-i18n="stat.users">用户数</span></div>
+      <div class="stat"><b id="statRatings">—</b><span data-i18n="stat.ratings">评分数</span></div>
     </div>
   </div>
   <div class="hero-right">
     <div class="glass-card">
-      <div class="gc-title">推荐流水线</div>
+      <div class="gc-title" data-i18n="home.pipeline">推荐流水线</div>
       <ol class="pipeline">
-        <li><i>1</i><div><b>多路召回</b><span>FREEDOM 多视图 / LightGCN / 内容画像 / 热度榜</span></div></li>
-        <li><i>2</i><div><b>融合排序</b><span>多源候选合并去重 + 分数归一</span></div></li>
-        <li><i>3</i><div><b>重排与解释</b><span>MMR 多样性约束 + 大模型/模板推荐理由</span></div></li>
-        <li><i>4</i><div><b>在线服务</b><span>离线预计算落库，接口毫秒级响应</span></div></li>
+        <li><i>1</i><div><b data-i18n="pipe.1.t">多路召回</b><span data-i18n="pipe.1.d">FREEDOM 多视图 / LightGCN / 内容画像 / 热度榜</span></div></li>
+        <li><i>2</i><div><b data-i18n="pipe.2.t">融合排序</b><span data-i18n="pipe.2.d">多源候选合并去重 + 分数归一</span></div></li>
+        <li><i>3</i><div><b data-i18n="pipe.3.t">重排与解释</b><span data-i18n="pipe.3.d">MMR 多样性约束 + 大模型/模板推荐理由</span></div></li>
+        <li><i>4</i><div><b data-i18n="pipe.4.t">在线服务</b><span data-i18n="pipe.4.d">离线预计算落库，接口毫秒级响应</span></div></li>
       </ol>
     </div>
   </div>
@@ -63,13 +58,13 @@
 
 <section class="section">
   <div class="section-head">
-    <h2>热门内容</h2>
+    <h2 data-i18n="home.popular">热门内容</h2>
     <div class="chips" id="genreChips">
-      <button class="chip on" data-genre="">全部</button>
+      <button class="chip on" data-genre="" data-i18n="chip.all">全部</button>
     </div>
   </div>
   <div class="grid" id="itemGrid">
-    <div class="loading">加载中…</div>
+    <div class="loading" data-i18n="dyn.loading">加载中…</div>
   </div>
 </section>
 
@@ -77,14 +72,15 @@
 
 <footer class="footer">
   <div class="wrap">
-    <span>推荐系统课程设计 · 南京财经大学</span>
+    <span data-i18n="footer.course">推荐系统课程设计 · 南京财经大学</span>
     <span class="dot">·</span>
-    <span>离线训练 + 在线查表架构</span>
+    <span data-i18n="footer.arch">离线训练 + 在线查表架构</span>
     <span class="dot">·</span>
-    <span id="healthTag">服务状态检测中…</span>
+    <span id="healthTag" data-i18n="health.checking">服务状态检测中…</span>
   </div>
 </footer>
 
+<script src="/static/js/i18n.js"></script>
 <script src="/static/js/static-api.js"></script>
 <script src="/static/js/app.js"></script>
 

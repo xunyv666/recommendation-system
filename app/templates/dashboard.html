@@ -5,25 +5,25 @@
 <section class="section">
   <div class="section-head">
     <div>
-      <h2>算法效果看板</h2>
-      <p class="muted">同一数据切分下的全排序评测结果（8:1:1 时间序切分，Top-10 全量排序）</p>
+      <h2 data-i18n="dash.h2">算法效果看板</h2>
+      <p class="muted" data-i18n="dash.desc">同一数据切分下的全排序评测结果（8:1:1 时间序切分，Top-10 全量排序）</p>
     </div>
   </div>
   <div class="table-wrap">
     <table class="table" id="metricTable">
       <thead>
         <tr>
-          <th>模型</th><th>Recall@10</th><th>NDCG@10</th><th>MRR@10</th>
-          <th>Precision@10</th><th>训练耗时(s)</th>
+          <th data-i18n="th.model">模型</th><th>Recall@10</th><th>NDCG@10</th><th>MRR@10</th>
+          <th>Precision@10</th><th data-i18n="th.time">训练耗时(s)</th>
         </tr>
       </thead>
-      <tbody><tr><td colspan="6" class="loading">加载中…</td></tr></tbody>
+      <tbody><tr><td colspan="6" class="loading" data-i18n="dyn.loading">加载中…</td></tr></tbody>
     </table>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-head"><h2>NDCG@10 对比</h2></div>
+  <div class="section-head"><h2 data-i18n="dash.chart">NDCG@10 对比</h2></div>
   <div class="bars" id="ndcgBars"></div>
 </section>
 {% endblock %}

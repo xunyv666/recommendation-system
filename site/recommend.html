@@ -13,17 +13,17 @@
   <div class="wrap topbar-inner">
     <a class="brand" href="/?dataset=movielens">
       <span class="brand-mark">RS</span>
-      <span class="brand-text">智能推荐系统<small>Courses Design 2026</small></span>
+      <span class="brand-text" data-i18n="brand">智能推荐系统<small>Courses Design 2026</small></span>
     </a>
     <nav class="nav">
-      <a href="/?dataset=movielens"   class="">首页</a>
-      <a href="/recommend?dataset=movielens" class="on">个性化推荐</a>
-      <a href="/dashboard?dataset=movielens" class="">算法看板</a>
-      <a href="/about" class="">关于</a>
+      <a href="/?dataset=movielens"   class="" data-i18n="nav.home">首页</a>
+      <a href="/recommend?dataset=movielens" class="on" data-i18n="nav.recommend">个性化推荐</a>
+      <a href="/dashboard?dataset=movielens" class="" data-i18n="nav.dashboard">算法看板</a>
+      <a href="/about" class="" data-i18n="nav.about">关于</a>
     </nav>
     <div class="domain-switch">
-      <button data-ds="movielens" class="on">电影</button>
-      <button data-ds="goodbooks" class="">图书</button>
+      <button data-ds="movielens" class="on" data-i18n="ds.movie">电影</button>
+      <button data-ds="goodbooks" class="" data-i18n="ds.book">图书</button>
     </div>
   </div>
 </header>
@@ -33,44 +33,44 @@
 <section class="section">
   <div class="section-head">
     <div>
-      <h2>个性化推荐</h2>
-      <p class="muted">选择用户与算法，对比不同策略给出的推荐结果与推荐理由</p>
+      <h2 data-i18n="rec.h2">个性化推荐</h2>
+      <p class="muted" data-i18n="rec.desc">选择用户与算法，对比不同策略给出的推荐结果与推荐理由</p>
     </div>
   </div>
 
   <div class="control-bar">
     <label class="field">
-      <span>用户</span>
+      <span data-i18n="rec.user">用户</span>
       <select id="userSelect"></select>
     </label>
     <label class="field">
-      <span>推荐算法</span>
+      <span data-i18n="rec.algo">推荐算法</span>
       <select id="algoSelect">
-        <option value="hybrid">融合推荐（线上默认）</option>
-        <option value="content">基于内容</option>
-        <option value="pop">热门榜</option>
-        <option value="LightGCN">LightGCN 图卷积</option>
-        <option value="ItemKNN">ItemKNN 协同过滤</option>
-        <option value="FREEDOM">FREEDOM 多视图融合</option>
+        <option value="hybrid" data-i18n="opt.hybrid">融合推荐（线上默认）</option>
+        <option value="content" data-i18n="opt.content">基于内容</option>
+        <option value="pop" data-i18n="opt.pop">热门榜</option>
+        <option value="LightGCN" data-i18n="opt.lightgcn">LightGCN 图卷积</option>
+        <option value="ItemKNN" data-i18n="opt.itemknn">ItemKNN 协同过滤</option>
+        <option value="FREEDOM" data-i18n="opt.freedom">FREEDOM 多视图融合</option>
       </select>
     </label>
     <label class="field">
-      <span>数量</span>
+      <span data-i18n="rec.k">数量</span>
       <select id="kSelect">
         <option>12</option><option>20</option><option>30</option>
       </select>
     </label>
-    <button class="btn primary" id="runBtn">生成推荐</button>
+    <button class="btn primary" id="runBtn" data-i18n="rec.run">生成推荐</button>
   </div>
 
   <div class="source-line" id="sourceLine"></div>
   <div class="grid" id="recGrid">
-    <div class="loading">选择条件后点击「生成推荐」</div>
+    <div class="loading" data-i18n="rec.loading">选择条件后点击「生成推荐」</div>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-head"><h2>该用户的历史行为</h2></div>
+  <div class="section-head"><h2 data-i18n="rec.history">该用户的历史行为</h2></div>
   <div class="history" id="historyList"></div>
 </section>
 
@@ -78,14 +78,15 @@
 
 <footer class="footer">
   <div class="wrap">
-    <span>推荐系统课程设计 · 南京财经大学</span>
+    <span data-i18n="footer.course">推荐系统课程设计 · 南京财经大学</span>
     <span class="dot">·</span>
-    <span>离线训练 + 在线查表架构</span>
+    <span data-i18n="footer.arch">离线训练 + 在线查表架构</span>
     <span class="dot">·</span>
-    <span id="healthTag">服务状态检测中…</span>
+    <span id="healthTag" data-i18n="health.checking">服务状态检测中…</span>
   </div>
 </footer>
 
+<script src="/static/js/i18n.js"></script>
 <script src="/static/js/static-api.js"></script>
 <script src="/static/js/app.js"></script>
 
