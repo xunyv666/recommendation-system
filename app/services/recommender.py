@@ -12,10 +12,12 @@
 from __future__ import annotations
 
 from collections import Counter
+import json
 import re
 
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 
+import config as C
 from ..extensions import db
 from ..models import Item, ItemSimilarity, Rating, Recommendation
 
@@ -47,10 +49,26 @@ def _clean_genres(dataset: str, genres: str | None, limit: int = 4) -> str:
     return "|".join(out)
 
 
+_ZH_CACHE: dict[str, dict[str, str]] | None = None
+
+
+def _zh_map(dataset: str) -> dict[str, str]:
+    """加载热门条目的中文译名（只覆盖 Top-N，缺的返回空串由前端回落原名）。"""
+    global _ZH_CACHE
+    if _ZH_CACHE is None:
+        path = C.ROOT / "data" / "processed" / "titles_zh.json"
+        try:
+            _ZH_CACHE = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            _ZH_CACHE = {}
+    return _ZH_CACHE.get(dataset, {})
+
+
 def _item_dict(it: Item) -> dict:
     return {
         "id": it.id,
         "title": it.title,
+        "title_zh": _zh_map(it.dataset).get(str(it.id), ""),
         "genres": _clean_genres(it.dataset, it.genres),
         "year": it.year,
         "avg_rating": round(it.avg_rating or 0, 3),
@@ -148,6 +166,62 @@ def content_based_recs(user_id: int, dataset: str, k: int = 20) -> list[dict]:
         )
         out.append(d)
     return out
+
+
+# 中文题材 → 数据库英文标签。用于让中文关键词也能命中题材检索。
+_GENRE_ALIAS = {
+    "喜剧": "comedy", "剧情": "drama", "动作": "action", "爱情": "romance",
+    "科幻": "sci-fi", "恐怖": "horror", "惊悚": "thriller", "动画": "animation",
+    "儿童": "children", "犯罪": "crime", "冒险": "adventure", "奇幻": "fantasy",
+    "战争": "war", "纪录片": "documentary", "音乐": "musical", "悬疑": "mystery",
+    "西部": "western", "小说": "fiction", "青春": "young-adult",
+    "历史": "historical-fiction", "传记": "biography", "非虚构": "non-fiction",
+}
+
+
+def search_items(dataset: str, query: str, k: int = 48) -> list[dict]:
+    """关键词检索：标题 / 题材 / 年份，中英文输入均可。
+
+    排序按命中位置分档：标题以关键词开头 > 标题包含 > 题材包含，
+    同档内按热度降序，避免搜索"the"时把冷门长尾排到前面。
+    """
+    q = (query or "").strip()
+    if not q:
+        return []
+
+    q = _GENRE_ALIAS.get(q, q)
+    like = f"%{q}%"
+    conds = [Item.title.ilike(like), Item.genres.ilike(like)]
+    # 中文关键词：在译名表里查一遍，命中的 id 一起纳入候选
+    zh_hits = [int(i) for i, t in _zh_map(dataset).items() if q in t]
+    if zh_hits:
+        conds.append(Item.id.in_(zh_hits))
+    # 四位数字额外按年份精确命中（如 1995）
+    if q.isdigit() and 1900 <= int(q) <= 2100:
+        conds.append(Item.year == int(q))
+
+    stmt = (
+        select(Item)
+        .where(Item.dataset == dataset, or_(*conds))
+        .limit(600)
+    )
+
+    ql = q.lower()
+
+    def rank(it: Item) -> tuple[int, float]:
+        t = (it.title or "").lower()
+        if t.startswith(ql):
+            tier = 0
+        elif ql in t:
+            tier = 1
+        elif ql in (it.genres or "").lower():
+            tier = 2
+        else:
+            tier = 3
+        return (tier, -(it.popularity or 0))
+
+    items = sorted(db.session.scalars(stmt).all(), key=rank)[:k]
+    return [_item_dict(it) for it in items]
 
 
 def similar_items(item_id: int, dataset: str, k: int = 12) -> list[dict]:

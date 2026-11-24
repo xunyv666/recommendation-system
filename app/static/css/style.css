@@ -93,6 +93,21 @@ a{color:inherit;text-decoration:none}
 .chip:hover{color:var(--fg);border-color:#39445c}
 .chip.on{background:rgba(91,140,255,.16);border-color:rgba(91,140,255,.5);color:#a8c3ff;font-weight:600}
 
+/* ---------- 关键词检索 ---------- */
+.search-box{position:relative;display:flex;align-items:center;gap:9px;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:0 13px;height:42px;min-width:284px;transition:.18s}
+.search-box:focus-within{border-color:rgba(91,140,255,.55);
+  box-shadow:0 0 0 3px rgba(91,140,255,.13)}
+.search-icon{color:var(--muted);flex:none}
+.search-box input{background:none;border:0;outline:0;color:var(--fg);
+  font-family:inherit;font-size:13.5px;width:100%;padding:0}
+.search-box input::placeholder{color:var(--muted)}
+.search-box input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+.search-clear{background:none;border:0;color:var(--muted);font-size:19px;line-height:1;
+  cursor:pointer;padding:0 2px;font-family:inherit;transition:.15s}
+.search-clear:hover{color:var(--fg)}
+
 /* ---------- grid & cards ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));gap:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
@@ -111,6 +126,13 @@ a{color:inherit;text-decoration:none}
   font-size:11px;font-weight:700;background:rgba(52,211,153,.16);
   border:1px solid rgba(52,211,153,.4);color:#6ee7b7;backdrop-filter:blur(6px)}
 .card-body{padding:12px 13px 14px;display:flex;flex-direction:column;gap:7px;flex:1}
+/* 无封面（电影域）：去掉占位封面，改为以标题为主体的文本卡片 */
+.card.no-poster{min-height:160px}
+.card.no-poster .card-body{padding:15px 16px 15px;gap:9px}
+.card.no-poster .card-title{font-size:14.5px;-webkit-line-clamp:3}
+.card-flags{display:flex;gap:6px;margin-bottom:1px}
+.card-flags .rank-badge,.card-flags .score-badge{position:static;top:auto;right:auto;
+  backdrop-filter:none}
 .card-title{font-size:13.5px;font-weight:600;line-height:1.42;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .card-meta{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11.5px;
@@ -147,6 +169,7 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- detail ---------- */
 .detail{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:start}
+.detail.no-cover{grid-template-columns:minmax(0,760px)}
 .detail-cover{position:sticky;top:88px}
 .detail h1{font-size:30px;font-weight:800;line-height:1.3;margin-bottom:14px}
 .detail-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
@@ -214,4 +237,8 @@ a{color:inherit;text-decoration:none}
   .domain-switch button{padding:5px 9px;font-size:12px}
   .lang-switch{padding:2px}
   .lang-switch button{padding:4px 7px;font-size:11.5px}
+  .section-head{gap:12px}
+  .search-box{width:100%;min-width:0}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+  .card.no-poster{min-height:132px}
 }

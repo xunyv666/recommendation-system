@@ -37,6 +37,11 @@
     "pipe.4.d": "Precomputed offline, millisecond responses",
     "home.popular": "Popular",
     "chip.all": "All",
+    "search.ph": "Search title, genre or year",
+    "search.hint": "Search the full catalogue by title, genre or year",
+    "search.searching": "Searching…",
+    "search.found": "「{q}」— {n} results",
+    "search.none": "「{q}」— no matches, try another keyword",
 
     /* 推荐页 */
     "rec.h2": "Personalized Recommendations",
@@ -137,12 +142,38 @@
     document.title = TITLES[key] || "Item Detail · RecSys 2026";
   }
 
+  /* 题材标签中文化：只覆盖常见标签，查不到就显示原文 */
+  const GENRE_ZH = {
+    "action": "动作", "adventure": "冒险", "animation": "动画", "children": "儿童",
+    "comedy": "喜剧", "crime": "犯罪", "documentary": "纪录", "drama": "剧情",
+    "fantasy": "奇幻", "film-noir": "黑色电影", "horror": "恐怖", "imax": "IMAX",
+    "musical": "歌舞", "mystery": "悬疑", "romance": "爱情", "sci-fi": "科幻",
+    "thriller": "惊悚", "war": "战争", "western": "西部",
+    "fiction": "小说", "young-adult": "青春", "historical-fiction": "历史小说",
+    "classics": "经典", "non-fiction": "非虚构", "biography": "传记",
+    "fantasy-paranormal": "奇幻", "science-fiction": "科幻", "history": "历史",
+    "philosophy": "哲学", "poetry": "诗歌", "psychology": "心理",
+    "self-help": "自我提升", "business": "商业", "humor": "幽默",
+    "short-stories": "短篇", "graphic-novels": "图像小说", "comics": "漫画",
+    "manga": "日漫", "mystery-thriller": "悬疑惊悚", "romance-love": "爱情",
+    "adventure-action": "冒险动作", "horror-gothic": "哥特恐怖",
+  };
+
+  function genre(g) {
+    if (lang !== "zh") return g;
+    return GENRE_ZH[String(g).toLowerCase()] || g;
+  }
+
   function applyStatic() {
     document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
     if (lang === "zh") return;
     document.querySelectorAll("[data-i18n]").forEach((n) => {
       const v = EN[n.getAttribute("data-i18n")];
       if (v != null) n.innerHTML = v;
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((n) => {
+      const v = EN[n.getAttribute("data-i18n-placeholder")];
+      if (v != null) n.setAttribute("placeholder", v);
     });
     updateTitle();
   }
@@ -183,7 +214,7 @@
     bar.appendChild(box);
   }
 
-  window.I18N = { t, reason, get lang() { return lang; } };
+  window.I18N = { t, reason, genre, get lang() { return lang; } };
 
   function boot() {
     buildSwitch();

@@ -126,6 +126,15 @@ def popular():
     return jsonify({"items": R.popular_items(ds, k, genre)})
 
 
+@api.get("/search")
+def search():
+    ds = request.args.get("dataset", "movielens")
+    q = request.args.get("q", "")
+    k = min(120, int(request.args.get("k", 48)))
+    items = R.search_items(ds, q, k)
+    return jsonify({"query": q, "dataset": ds, "total": len(items), "items": items})
+
+
 @api.get("/similar/<int:item_id>")
 def similar(item_id: int):
     ds = request.args.get("dataset", "movielens")
