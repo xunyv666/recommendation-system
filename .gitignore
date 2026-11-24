@@ -39,3 +39,6 @@ Thumbs.db
 
 # 临时验证截图
 screenshots/_*.png
+
+# wrangler 本地缓存
+.wrangler/
