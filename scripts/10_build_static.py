@@ -215,8 +215,8 @@ def write_redirects() -> None:
     (SITE / "_redirects").write_text(
         "\n".join([
             "# Cloudflare Pages 自动把 /xxx.html 映射为 /xxx，不要再反向重写，否则会 308 自跳转死循环。",
-            "/item/* /item.html 200",
-            "/* /index.html 404",
+            "/item/* /item 200",
+            "/* / 404",
         ]) + "\n",
         encoding="utf-8",
     )
