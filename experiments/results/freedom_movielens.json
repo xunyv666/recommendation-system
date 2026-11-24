@@ -1,0 +1,30 @@
+{
+  "dataset": "movielens",
+  "model": "FREEDOM",
+  "config": {
+    "dim": 64,
+    "layers": 3,
+    "lr": 0.001,
+    "batch": 8192,
+    "align_weight": 0.15,
+    "epochs": 150,
+    "patience": 30
+  },
+  "best_epoch": 22,
+  "best_valid": {
+    "ndcg@10": 0.00794261402787832
+  },
+  "test": {
+    "recall@10": 0.008197,
+    "precision@10": 0.00082,
+    "ndcg@10": 0.003815,
+    "mrr@10": 0.002466,
+    "hit@10": 0.008197,
+    "map@10": 0.002466
+  },
+  "fuse_weight": {
+    "collab": 0.4893430173397064,
+    "content": 0.5106569528579712
+  },
+  "train_seconds": 136.3
+}

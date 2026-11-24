@@ -1,0 +1,16 @@
+[HYB] dataset=movielens models=['EASE', 'ItemKNN', 'BPR', 'NeuMF', 'LightGCN', 'FREEDOM', 'NCL']
+[HYB] 读取缓存 movielens.npz
+[HYB] EASE       valid=0.0855 test=0.0701
+[HYB] ItemKNN    valid=0.0826 test=0.0667
+[HYB] BPR        valid=0.0717 test=0.0576
+[HYB] NeuMF      valid=0.0675 test=0.0514
+[HYB] LightGCN   valid=0.0531 test=0.0413
+[HYB] FREEDOM    valid=0.0554 test=0.0390
+[HYB] NCL        valid=0.0718 test=0.0580
+[HYB] Content    valid=0.0440 test=0.0403
+[HYB] Popularity valid=0.0521 test=0.0439
+[HYB] 权重搜索完成 182s  valid NDCG=0.0865
+[HYB] weights: EASE=0.179, ItemKNN=0.034, BPR=0.015, NeuMF=0.118, LightGCN=0.152, FREEDOM=0.083, NCL=0.017, Content=0.388, Popularity=0.014
+[HYB] Fusion test NDCG@10=0.0687 Recall@10=0.0610
+[HYB] Equal4 valid NDCG=0.0870 test NDCG=0.0722
+[HYB] 写出 E:\桌面\推荐系统期末\experiments\results\hybrid_eval.json

@@ -1,0 +1,3 @@
+ETL {"dataset": "movielens", "domain": "movie", "n_users": 610, "n_items": 9724, "n_interactions": 100836, "sparsity": 0.983, "rating_min": 0.5, "rating_max": 5.0, "rating_mean": 3.5016, "ts_min": 828124615, "ts_max": 1537799250}
+FEAT {"dataset": "movielens", "n_items": 9724, "dim": 153, "n_sim_pairs": 486200} 90.8s
+ETL {"dataset": "bookcrossing", "domain": "book", "n_users": 22593, "n_items": 257815, "n_interactions": 929723, "sparsity": 0.99984, "rating_min": 1.0, "rating_max": 10.0, "rating_mean": 5.9213, "ts_min": 1000000162, "ts_max": 1699997659}

@@ -1,0 +1,277 @@
+[
+  {
+    "dataset": "movielens",
+    "model": "Random",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0012,
+      "precision@10": 0.0021,
+      "ndcg@10": 0.0027,
+      "mrr@10": 0.0074,
+      "hit@10": 0.0213,
+      "map@10": 0.001
+    },
+    "test": {
+      "recall@10": 0.0011,
+      "precision@10": 0.001,
+      "ndcg@10": 0.002,
+      "mrr@10": 0.0048,
+      "hit@10": 0.0098,
+      "map@10": 0.0011
+    },
+    "train_seconds": 24.3,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "Pop",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0382,
+      "precision@10": 0.0382,
+      "ndcg@10": 0.0532,
+      "mrr@10": 0.112,
+      "hit@10": 0.2377,
+      "map@10": 0.0257
+    },
+    "test": {
+      "recall@10": 0.0345,
+      "precision@10": 0.0303,
+      "ndcg@10": 0.0437,
+      "mrr@10": 0.0869,
+      "hit@10": 0.1934,
+      "map@10": 0.0218
+    },
+    "train_seconds": 29.5,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "ItemKNN",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0755,
+      "precision@10": 0.0556,
+      "ndcg@10": 0.0823,
+      "mrr@10": 0.1531,
+      "hit@10": 0.3541,
+      "map@10": 0.0411
+    },
+    "test": {
+      "recall@10": 0.0578,
+      "precision@10": 0.0459,
+      "ndcg@10": 0.0628,
+      "mrr@10": 0.1167,
+      "hit@10": 0.2869,
+      "map@10": 0.0301
+    },
+    "train_seconds": 129.8,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "BPR",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0615,
+      "precision@10": 0.0531,
+      "ndcg@10": 0.0717,
+      "mrr@10": 0.1331,
+      "hit@10": 0.3115,
+      "map@10": 0.0348
+    },
+    "test": {
+      "recall@10": 0.0493,
+      "precision@10": 0.0423,
+      "ndcg@10": 0.0576,
+      "mrr@10": 0.1077,
+      "hit@10": 0.2656,
+      "map@10": 0.0283
+    },
+    "train_seconds": 23.6,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "NeuMF",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0586,
+      "precision@10": 0.0505,
+      "ndcg@10": 0.0675,
+      "mrr@10": 0.1296,
+      "hit@10": 0.3115,
+      "map@10": 0.0317
+    },
+    "test": {
+      "recall@10": 0.0467,
+      "precision@10": 0.0393,
+      "ndcg@10": 0.0514,
+      "mrr@10": 0.0897,
+      "hit@10": 0.2656,
+      "map@10": 0.0242
+    },
+    "train_seconds": 470.0,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "LightGCN",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0366,
+      "precision@10": 0.0374,
+      "ndcg@10": 0.0519,
+      "mrr@10": 0.1122,
+      "hit@10": 0.2361,
+      "map@10": 0.0247
+    },
+    "test": {
+      "recall@10": 0.0334,
+      "precision@10": 0.0293,
+      "ndcg@10": 0.0416,
+      "mrr@10": 0.0847,
+      "hit@10": 0.1967,
+      "map@10": 0.0198
+    },
+    "train_seconds": 138.5,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "SGL",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0248,
+      "precision@10": 0.0156,
+      "ndcg@10": 0.0229,
+      "mrr@10": 0.0432,
+      "hit@10": 0.1279,
+      "map@10": 0.0102
+    },
+    "test": {
+      "recall@10": 0.0222,
+      "precision@10": 0.0125,
+      "ndcg@10": 0.0189,
+      "mrr@10": 0.0322,
+      "hit@10": 0.1066,
+      "map@10": 0.0087
+    },
+    "train_seconds": 418.6,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "NCL",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0607,
+      "precision@10": 0.0525,
+      "ndcg@10": 0.0718,
+      "mrr@10": 0.135,
+      "hit@10": 0.3066,
+      "map@10": 0.0357
+    },
+    "test": {
+      "recall@10": 0.0501,
+      "precision@10": 0.0425,
+      "ndcg@10": 0.058,
+      "mrr@10": 0.1033,
+      "hit@10": 0.2557,
+      "map@10": 0.0291
+    },
+    "train_seconds": 6353.0,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "DGCF",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0376,
+      "precision@10": 0.0377,
+      "ndcg@10": 0.0518,
+      "mrr@10": 0.1117,
+      "hit@10": 0.241,
+      "map@10": 0.0243
+    },
+    "test": {
+      "recall@10": 0.0326,
+      "precision@10": 0.0292,
+      "ndcg@10": 0.0413,
+      "mrr@10": 0.0835,
+      "hit@10": 0.1918,
+      "map@10": 0.0199
+    },
+    "train_seconds": 3643.9,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "EASE",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0777,
+      "precision@10": 0.0626,
+      "ndcg@10": 0.0842,
+      "mrr@10": 0.1488,
+      "hit@10": 0.3689,
+      "map@10": 0.0415
+    },
+    "test": {
+      "recall@10": 0.0602,
+      "precision@10": 0.053,
+      "ndcg@10": 0.0688,
+      "mrr@10": 0.1267,
+      "hit@10": 0.3115,
+      "map@10": 0.0322
+    },
+    "train_seconds": 14588.4,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "FREEDOM",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0397,
+      "precision@10": 0.0395,
+      "ndcg@10": 0.0554,
+      "mrr@10": 0.1178,
+      "hit@10": 0.2557,
+      "map@10": 0.027
+    },
+    "test": {
+      "recall@10": 0.0307,
+      "precision@10": 0.0305,
+      "ndcg@10": 0.039,
+      "mrr@10": 0.0797,
+      "hit@10": 0.2115,
+      "map@10": 0.0171
+    },
+    "train_seconds": 158.4,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  }
+]

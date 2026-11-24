@@ -1,0 +1,6 @@
+PS E:\推荐系统期末> .\venv\Scripts\python.exe -m waitress --host=127.0.0.1 --port=8081 run:app
+INFO:waitress:Serving on http://127.0.0.1:8081
+
+PS E:\推荐系统期末> curl.exe -s http://127.0.0.1:8081/api/health
+{"service":"recsys-course-project","status":"ok"}
+

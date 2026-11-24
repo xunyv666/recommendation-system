@@ -1,0 +1,91 @@
+
+[GEN] movielens / EASE
+command line args [--dataset movielens --models EASE ItemKNN NeuMF hybrid --topk-hybrid 60] will not be used in RecBole
+E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\data\dataset\dataset.py:648: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  feat[field].fillna(value=0, inplace=True)
+E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\data\dataset\dataset.py:650: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  feat[field].fillna(value=feat[field].mean(), inplace=True)
+    scored 610 users x 9725 items from EASE-Nov-16-2026_21-12-56.pth
+    saved 12200 rows (86s)
+
+[GEN] movielens / ItemKNN
+command line args [--dataset movielens --models EASE ItemKNN NeuMF hybrid --topk-hybrid 60] will not be used in RecBole
+E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\data\dataset\dataset.py:648: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  feat[field].fillna(value=0, inplace=True)
+E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\data\dataset\dataset.py:650: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  feat[field].fillna(value=feat[field].mean(), inplace=True)
+    scored 610 users x 9725 items from ItemKNN-Nov-16-2026_15-57-03.pth
+    saved 12200 rows (4s)
+
+[GEN] movielens / NeuMF
+command line args [--dataset movielens --models EASE ItemKNN NeuMF hybrid --topk-hybrid 60] will not be used in RecBole
+E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\data\dataset\dataset.py:648: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  feat[field].fillna(value=0, inplace=True)
+E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\data\dataset\dataset.py:650: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  feat[field].fillna(value=feat[field].mean(), inplace=True)
+    scored 610 users x 9725 items from NeuMF-Nov-16-2026_15-58-15.pth
+    saved 12200 rows (14s)
+
+[GEN] movielens / hybrid
+command line args [--dataset movielens --models EASE ItemKNN NeuMF hybrid --topk-hybrid 60] will not be used in RecBole
+Traceback (most recent call last):
+  File "E:\桌面\推荐系统期末\scripts\04_generate_recs.py", line 247, in main
+    internal_to_orig, user_orig, scores, config, ds = score_all_users(
+                                                      ^^^^^^^^^^^^^^^^
+  File "E:\桌面\推荐系统期末\scripts\04_generate_recs.py", line 87, in score_all_users
+    config, ds, test_data, m, ckpt = build_model_and_data(dataset, model, cfg_extra)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\桌面\推荐系统期末\scripts\04_generate_recs.py", line 59, in build_model_and_data
+    config = Config(model=model, dataset=dataset, config_dict=cfg)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\config\configurator.py", line 88, in __init__
+    self.model, self.model_class, self.dataset = self._get_model_and_dataset(
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\config\configurator.py", line 216, in _get_model_and_dataset
+    final_model_class = get_model(final_model)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\utils\utils.py", line 76, in get_model
+    if importlib.util.find_spec(module_path, __name__):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib.util>", line 91, in find_spec
+  File "E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\model\exlib_recommender\__init__.py", line 1, in <module>
+    from recbole.model.exlib_recommender.lightgbm import LightGBM
+  File "E:\桌面\推荐系统期末\venv\Lib\site-packages\recbole\model\exlib_recommender\lightgbm.py", line 11, in <module>
+    import lightgbm as lgb
+ModuleNotFoundError: No module named 'lightgbm'
+    FAIL ModuleNotFoundError: No module named 'lightgbm'
+
+[GEN] movielens / hybrid (融合)
+    saved 36600 rows
+
+[GEN] 全部完成

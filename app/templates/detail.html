@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ item_id }}{% endblock %}
+
+{% block content %}
+<section class="section" id="detailRoot">
+  <div class="loading">加载中…</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>App.initDetail({{ item_id }});</script>
+{% endblock %}

@@ -1,0 +1,52 @@
+[
+  {
+    "dataset": "movielens",
+    "model": "FREEDOM",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0397,
+      "precision@10": 0.0395,
+      "ndcg@10": 0.0554,
+      "mrr@10": 0.1178,
+      "hit@10": 0.2557,
+      "map@10": 0.027
+    },
+    "test": {
+      "recall@10": 0.0307,
+      "precision@10": 0.0305,
+      "ndcg@10": 0.039,
+      "mrr@10": 0.0797,
+      "hit@10": 0.2115,
+      "map@10": 0.0171
+    },
+    "train_seconds": 158.4,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  },
+  {
+    "dataset": "movielens",
+    "model": "NCL",
+    "epochs_cfg": 60,
+    "valid": {
+      "recall@10": 0.0607,
+      "precision@10": 0.0525,
+      "ndcg@10": 0.0718,
+      "mrr@10": 0.135,
+      "hit@10": 0.3066,
+      "map@10": 0.0357
+    },
+    "test": {
+      "recall@10": 0.0501,
+      "precision@10": 0.0425,
+      "ndcg@10": 0.058,
+      "mrr@10": 0.1033,
+      "hit@10": 0.2557,
+      "map@10": 0.0291
+    },
+    "train_seconds": 6353.0,
+    "n_users": 611,
+    "n_items": 9725,
+    "n_interactions": 100836
+  }
+]

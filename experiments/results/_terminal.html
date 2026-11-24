@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box} body{margin:0;background:#0b0e14;font-family:Consolas,'Cascadia Mono','Microsoft YaHei',monospace}
+.win{width:1400px;background:#0b0e14;border:1px solid #23283a;border-radius:14px;overflow:hidden;margin:24px}
+.bar{height:52px;background:#151925;display:flex;align-items:center;padding:0 20px;gap:9px;border-bottom:1px solid #23283a}
+.dot{width:13px;height:13px;border-radius:50%} .r{background:#ff5f57} .y{background:#febc2e} .g{background:#28c840}
+.title{margin-left:16px;color:#9aa4bf;font-size:15px}
+.body{padding:26px 30px 30px;color:#d6deeb;font-size:17px;line-height:1.62;white-space:pre-wrap;word-break:break-all}
+.p{color:#7aa2f7;font-weight:600} .s{color:#9ece6a} .n{color:#e0af68} .k{color:#bb9af7}
+.foot{padding:12px 30px;border-top:1px solid #23283a;color:#5f6b8a;font-size:14px;background:#10141e}
+</style></head><body><div class="win">
+<div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="title">Windows PowerShell — 接口测试</span></div>
+<div class="body"><span class="p">PS </span>E:\recsys&gt; curl.exe -s &quot;http://127.0.0.1:8080/api/recommend/1?dataset=movielens&amp;algo=hybrid&amp;k=2&quot;
+{
+  &quot;algo&quot;<span class="k">:</span> &quot;hybrid&quot;,
+  &quot;dataset&quot;<span class="k">:</span> &quot;movielens&quot;,
+  &quot;items&quot;<span class="k">:</span> [
+    {
+      &quot;avg_rating&quot;<span class="k">:</span> 3.556,
+      &quot;description&quot;<span class="k">:</span> &quot;&quot;,
+      &quot;genres&quot;<span class="k">:</span> &quot;action|crime|thriller&quot;,
+      &quot;id&quot;<span class="k">:</span> 165,
+      &quot;image_url&quot;<span class="k">:</span> &quot;&quot;,
+      &quot;n_ratings&quot;<span class="k">:</span> 144,
+      &quot;popularity&quot;<span class="k">:</span> 7.077441,
+      &quot;reason&quot;<span class="k">:</span> &quot;综合多路召回信号后排序靠前，题材同属「Action」，评分 3.6（144 人评）&quot;,
+      &quot;score&quot;<span class="k">:</span> 5.678916,
+      &quot;title&quot;<span class="k">:</span> &quot;Die Hard: With a Vengeance (1995)&quot;,
+      &quot;year&quot;<span class="k">:</span> 1995
+    },
+    {
+      &quot;avg_rating&quot;<span class="k">:</span> 4.106,
+      &quot;description&quot;<span class="k">:</span> &quot;&quot;,
+      &quot;genres&quot;<span class="k">:</span> &quot;adventure|fantasy&quot;,
+      &quot;id&quot;<span class="k">:</span> 4993,
+      &quot;image_url&quot;<span class="k">:</span> &quot;&quot;,
+      &quot;n_ratings&quot;<span class="k">:</span> 198,
+      &quot;popularity&quot;<span class="k">:</span> 8.068692,
+      &quot;reason&quot;<span class="k">:</span> &quot;综合多路召回信号后排序靠前，题材同属「Adventure」，评分 4.1（198 人评）&quot;,
+      &quot;score&quot;<span class="k">:</span> 5.635523,
+      &quot;title&quot;<span class="k">:</span> &quot;Lord of the Rings: The Fellowship of the Ring, The (2001)&quot;,
+      &quot;year&quot;<span class="k">:</span> 2001
+    }
+  ],
+  &quot;rerank&quot;<span class="k">:</span> &quot;mmr&quot;,
+  &quot;source&quot;<span class="k">:</span> &quot;precomputed:hybrid&quot;,
+  &quot;user_id&quot;<span class="k">:</span> 1
+}</div><div class="foot">GET /api/recommend/1 返回 Top-2 与推荐理由</div></div></body></html>

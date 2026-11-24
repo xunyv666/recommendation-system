@@ -1,0 +1,144 @@
+{
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_dir": "E:\\桌面\\推荐系统期末\\models\\qwen2.5-0.5b-instruct",
+  "device": "cpu",
+  "dataset": "movielens",
+  "generated_at": "2026-11-16T22:44:37",
+  "load_seconds": 34.3,
+  "samples": [
+    {
+      "user_id": 414,
+      "profile": "用户 414 最近高分内容：American President, The (1995)、Twelve Monkeys (a.k.a. 12 Monkeys) (1995)、Babe (1995)、Usual Suspects, The (1995)、Beautiful Girls (1996)；偏好题材：Drama、Comedy、Thriller、Crime、Romance、Action",
+      "item_id": 1057,
+      "title": "Everyone Says I Love You (1996)",
+      "genres": "Comedy|Musical|Romance",
+      "llm_reason": "《Everyone Says I Love You》是一部以爱情为主题的喜剧电影，深受观众喜爱。",
+      "template_reason": "与你偏好的「Comedy、Romance」题材一致，且评分 3.5",
+      "latency_s": 13.32
+    },
+    {
+      "user_id": 414,
+      "profile": "用户 414 最近高分内容：American President, The (1995)、Twelve Monkeys (a.k.a. 12 Monkeys) (1995)、Babe (1995)、Usual Suspects, The (1995)、Beautiful Girls (1996)；偏好题材：Drama、Comedy、Thriller、Crime、Romance、Action",
+      "item_id": 1615,
+      "title": "Edge, The (1997)",
+      "genres": "Adventure|Drama",
+      "llm_reason": "Edge, The (1997)，题材：Adventure|Drama，平均评分 3.0（11 人评分）",
+      "template_reason": "综合协同信号与内容匹配度排序靠前，且评分 3.0",
+      "latency_s": 9.86
+    },
+    {
+      "user_id": 414,
+      "profile": "用户 414 最近高分内容：American President, The (1995)、Twelve Monkeys (a.k.a. 12 Monkeys) (1995)、Babe (1995)、Usual Suspects, The (1995)、Beautiful Girls (1996)；偏好题材：Drama、Comedy、Thriller、Crime、Romance、Action",
+      "item_id": 2530,
+      "title": "Beneath the Planet of the Apes (1970)",
+      "genres": "Action|Sci-Fi",
+      "llm_reason": "《 Beneath the Planet of the Apes (1970)》是剧情动作片，适合喜欢科幻和恐怖类型的用户。",
+      "template_reason": "与你偏好的「Action」题材一致，且评分 2.8",
+      "latency_s": 6.97
+    },
+    {
+      "user_id": 599,
+      "profile": "用户 599 最近高分内容：Rumble in the Bronx (Hont faan kui) (1995)、Star Wars: Episode IV - A New Hope (1977)、Léon: The Professional (a.k.a. The Professional) (Léon) (1994)、Pulp Fiction (1994)、Ghost in the Shell (Kôkaku kidôtai) (1995)；偏好题材：Action、Drama、Adventure、Sci-Fi、Comedy、Crime",
+      "item_id": 3635,
+      "title": "Spy Who Loved Me, The (1977)",
+      "genres": "Action|Adventure|Thriller",
+      "llm_reason": "《The》是20世纪最伟大的动作片之一，由詹姆斯·卡梅隆执导，杰森·斯坦森和凯瑟琳·赫本主演，是一部经典的科幻电影。",
+      "template_reason": "与你偏好的「Adventure」题材一致，且评分 3.4",
+      "latency_s": 8.66
+    },
+    {
+      "user_id": 599,
+      "profile": "用户 599 最近高分内容：Rumble in the Bronx (Hont faan kui) (1995)、Star Wars: Episode IV - A New Hope (1977)、Léon: The Professional (a.k.a. The Professional) (Léon) (1994)、Pulp Fiction (1994)、Ghost in the Shell (Kôkaku kidôtai) (1995)；偏好题材：Action、Drama、Adventure、Sci-Fi、Comedy、Crime",
+      "item_id": 2802,
+      "title": "Tequila Sunrise (1988)",
+      "genres": "Action|Drama|Romance|Thriller",
+      "llm_reason": "Tequila Sunrise (1988)，题材：Action|Drama|Romance|Thriller，平均评分 3.038（13 人评分）",
+      "template_reason": "与你偏好的「Drama」题材一致，且评分 3.0",
+      "latency_s": 8.5
+    },
+    {
+      "user_id": 599,
+      "profile": "用户 599 最近高分内容：Rumble in the Bronx (Hont faan kui) (1995)、Star Wars: Episode IV - A New Hope (1977)、Léon: The Professional (a.k.a. The Professional) (Léon) (1994)、Pulp Fiction (1994)、Ghost in the Shell (Kôkaku kidôtai) (1995)；偏好题材：Action、Drama、Adventure、Sci-Fi、Comedy、Crime",
+      "item_id": 139385,
+      "title": "The Revenant (2015)",
+      "genres": "Adventure|Drama",
+      "llm_reason": "《Revenant》是一部以探险和复仇为主题的电影，剧情紧张刺激，值得一看。",
+      "template_reason": "与你偏好的「Adventure、Drama」题材一致，且评分 3.9",
+      "latency_s": 5.01
+    }
+  ],
+  "rerank_samples": [
+    {
+      "user_id": 414,
+      "baseline_order": [
+        1057,
+        1615,
+        2530,
+        492,
+        1603,
+        1588
+      ],
+      "llm_order": [
+        2530,
+        1057,
+        1615,
+        492,
+        1588,
+        1603
+      ],
+      "baseline_titles": [
+        "Everyone Says I Love You (1996)",
+        "Edge, The (1997)",
+        "Beneath the Planet of the Apes (1970)",
+        "Manhattan Murder Mystery (1993)",
+        "Mimic (1997)",
+        "George of the Jungle (1997)"
+      ],
+      "llm_titles": [
+        "Beneath the Planet of the Apes (1970)",
+        "Everyone Says I Love You (1996)",
+        "Edge, The (1997)",
+        "Manhattan Murder Mystery (1993)",
+        "George of the Jungle (1997)",
+        "Mimic (1997)"
+      ],
+      "latency_s": 3.61
+    },
+    {
+      "user_id": 599,
+      "baseline_order": [
+        3635,
+        2802,
+        139385,
+        8947,
+        1033,
+        4823
+      ],
+      "llm_order": [
+        139385,
+        3635,
+        2802,
+        8947,
+        4823,
+        1033
+      ],
+      "baseline_titles": [
+        "Spy Who Loved Me, The (1977)",
+        "Tequila Sunrise (1988)",
+        "The Revenant (2015)",
+        "Grudge, The (2004)",
+        "Fox and the Hound, The (1981)",
+        "Serendipity (2001)"
+      ],
+      "llm_titles": [
+        "The Revenant (2015)",
+        "Spy Who Loved Me, The (1977)",
+        "Tequila Sunrise (1988)",
+        "Grudge, The (2004)",
+        "Serendipity (2001)",
+        "Fox and the Hound, The (1981)"
+      ],
+      "latency_s": 4.06
+    }
+  ]
+}

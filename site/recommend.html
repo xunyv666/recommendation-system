@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个性化推荐 · RecSys 2026</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f7cff'/%3E%3Ctext x='16' y='22' font-size='13' text-anchor='middle' fill='white' font-family='Arial'%3ERS%3C/text%3E%3C/svg%3E">
+</head>
+<body data-dataset="movielens">
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/?dataset=movielens">
+      <span class="brand-mark">RS</span>
+      <span class="brand-text">智能推荐系统<small>Courses Design 2026</small></span>
+    </a>
+    <nav class="nav">
+      <a href="/?dataset=movielens"   class="">首页</a>
+      <a href="/recommend?dataset=movielens" class="on">个性化推荐</a>
+      <a href="/dashboard?dataset=movielens" class="">算法看板</a>
+      <a href="/about" class="">关于</a>
+    </nav>
+    <div class="domain-switch">
+      <button data-ds="movielens" class="on">电影</button>
+      <button data-ds="goodbooks" class="">图书</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  
+<section class="section">
+  <div class="section-head">
+    <div>
+      <h2>个性化推荐</h2>
+      <p class="muted">选择用户与算法，对比不同策略给出的推荐结果与推荐理由</p>
+    </div>
+  </div>
+
+  <div class="control-bar">
+    <label class="field">
+      <span>用户</span>
+      <select id="userSelect"></select>
+    </label>
+    <label class="field">
+      <span>推荐算法</span>
+      <select id="algoSelect">
+        <option value="hybrid">融合推荐（线上默认）</option>
+        <option value="content">基于内容</option>
+        <option value="pop">热门榜</option>
+        <option value="LightGCN">LightGCN 图卷积</option>
+        <option value="ItemKNN">ItemKNN 协同过滤</option>
+        <option value="FREEDOM">FREEDOM 多视图融合</option>
+      </select>
+    </label>
+    <label class="field">
+      <span>数量</span>
+      <select id="kSelect">
+        <option>12</option><option>20</option><option>30</option>
+      </select>
+    </label>
+    <button class="btn primary" id="runBtn">生成推荐</button>
+  </div>
+
+  <div class="source-line" id="sourceLine"></div>
+  <div class="grid" id="recGrid">
+    <div class="loading">选择条件后点击「生成推荐」</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>该用户的历史行为</h2></div>
+  <div class="history" id="historyList"></div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>推荐系统课程设计 · 南京财经大学</span>
+    <span class="dot">·</span>
+    <span>离线训练 + 在线查表架构</span>
+    <span class="dot">·</span>
+    <span id="healthTag">服务状态检测中…</span>
+  </div>
+</footer>
+
+<script src="/static/js/static-api.js"></script>
+<script src="/static/js/app.js"></script>
+
+<script>App.initRecommend();</script>
+
+</body>
+</html>

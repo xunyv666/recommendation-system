@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物品详情 · 智能推荐系统</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f7cff'/%3E%3Ctext x='16' y='22' font-size='13' text-anchor='middle' fill='white' font-family='Arial'%3ERS%3C/text%3E%3C/svg%3E">
+</head>
+<body data-dataset="goodbooks">
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/?dataset=goodbooks">
+      <span class="brand-mark">RS</span>
+      <span class="brand-text">智能推荐系统<small>Courses Design 2026</small></span>
+    </a>
+    <nav class="nav">
+      <a href="/?dataset=goodbooks"   class="">首页</a>
+      <a href="/recommend?dataset=goodbooks" class="">个性化推荐</a>
+      <a href="/dashboard?dataset=goodbooks" class="">算法看板</a>
+      <a href="/about" class="">关于</a>
+    </nav>
+    <div class="domain-switch">
+      <button data-ds="movielens" class="">电影</button>
+      <button data-ds="goodbooks" class="on">图书</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  
+<section class="section" id="detailRoot">
+  <div class="loading">加载中…</div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>推荐系统课程设计 · 南京财经大学</span>
+    <span class="dot">·</span>
+    <span>离线训练 + 在线查表架构</span>
+    <span class="dot">·</span>
+    <span id="healthTag">服务状态检测中…</span>
+  </div>
+</footer>
+
+<script src="/static/js/static-api.js"></script>
+<script src="/static/js/app.js"></script>
+
+<script>
+  const m = location.pathname.match(/\/item\/(\d+)/);
+  const q = new URLSearchParams(location.search);
+  App.initDetail(m ? Number(m[1]) : Number(q.get('id') || 0));
+</script>
+
+</body>
+</html>

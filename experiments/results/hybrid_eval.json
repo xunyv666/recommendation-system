@@ -1,0 +1,208 @@
+{
+  "dataset": "movielens",
+  "protocol": "8:1:1 time-wise split, full-sort top-10, seed=2026",
+  "signals": [
+    "EASE",
+    "ItemKNN",
+    "BPR",
+    "NeuMF",
+    "LightGCN",
+    "FREEDOM",
+    "NCL",
+    "Content",
+    "Popularity"
+  ],
+  "weights": {
+    "EASE": 0.1789,
+    "ItemKNN": 0.0345,
+    "BPR": 0.0146,
+    "NeuMF": 0.1184,
+    "LightGCN": 0.1523,
+    "FREEDOM": 0.0828,
+    "NCL": 0.0166,
+    "Content": 0.388,
+    "Popularity": 0.0138
+  },
+  "valid_ndcg": 0.08653,
+  "fusion_test": {
+    "ndcg@10": 0.068674,
+    "recall@10": 0.061048,
+    "mrr@10": 0.123113,
+    "hit@10": 0.304918,
+    "n_users": 610
+  },
+  "fusion_equal": {
+    "signals": [
+      "EASE",
+      "ItemKNN",
+      "NeuMF",
+      "Content"
+    ],
+    "weights": {
+      "EASE": 0.25,
+      "ItemKNN": 0.25,
+      "NeuMF": 0.25,
+      "Content": 0.25
+    },
+    "valid": {
+      "ndcg@10": 0.087005,
+      "recall@10": 0.078364,
+      "mrr@10": 0.159663,
+      "hit@10": 0.367213,
+      "n_users": 610
+    },
+    "test": {
+      "ndcg@10": 0.072209,
+      "recall@10": 0.061409,
+      "mrr@10": 0.130749,
+      "hit@10": 0.314754,
+      "n_users": 610
+    }
+  },
+  "single": {
+    "EASE": {
+      "valid": {
+        "ndcg@10": 0.085534,
+        "recall@10": 0.076892,
+        "mrr@10": 0.152925,
+        "hit@10": 0.367213,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.070126,
+        "recall@10": 0.061854,
+        "mrr@10": 0.127375,
+        "hit@10": 0.313115,
+        "n_users": 610
+      }
+    },
+    "ItemKNN": {
+      "valid": {
+        "ndcg@10": 0.082609,
+        "recall@10": 0.078077,
+        "mrr@10": 0.152722,
+        "hit@10": 0.360656,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.06674,
+        "recall@10": 0.057696,
+        "mrr@10": 0.124381,
+        "hit@10": 0.285246,
+        "n_users": 610
+      }
+    },
+    "BPR": {
+      "valid": {
+        "ndcg@10": 0.071675,
+        "recall@10": 0.061548,
+        "mrr@10": 0.133117,
+        "hit@10": 0.311475,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.057562,
+        "recall@10": 0.049339,
+        "mrr@10": 0.107696,
+        "hit@10": 0.265574,
+        "n_users": 610
+      }
+    },
+    "NeuMF": {
+      "valid": {
+        "ndcg@10": 0.06746,
+        "recall@10": 0.058563,
+        "mrr@10": 0.129575,
+        "hit@10": 0.311475,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.051418,
+        "recall@10": 0.046662,
+        "mrr@10": 0.089675,
+        "hit@10": 0.265574,
+        "n_users": 610
+      }
+    },
+    "LightGCN": {
+      "valid": {
+        "ndcg@10": 0.053127,
+        "recall@10": 0.037684,
+        "mrr@10": 0.114893,
+        "hit@10": 0.237705,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.041307,
+        "recall@10": 0.031816,
+        "mrr@10": 0.086055,
+        "hit@10": 0.193443,
+        "n_users": 610
+      }
+    },
+    "FREEDOM": {
+      "valid": {
+        "ndcg@10": 0.055381,
+        "recall@10": 0.039749,
+        "mrr@10": 0.117814,
+        "hit@10": 0.255738,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.038986,
+        "recall@10": 0.030738,
+        "mrr@10": 0.079653,
+        "hit@10": 0.211475,
+        "n_users": 610
+      }
+    },
+    "NCL": {
+      "valid": {
+        "ndcg@10": 0.071779,
+        "recall@10": 0.06067,
+        "mrr@10": 0.134959,
+        "hit@10": 0.306557,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.057977,
+        "recall@10": 0.050112,
+        "mrr@10": 0.103331,
+        "hit@10": 0.255738,
+        "n_users": 610
+      }
+    },
+    "Content": {
+      "valid": {
+        "ndcg@10": 0.043981,
+        "recall@10": 0.038397,
+        "mrr@10": 0.083923,
+        "hit@10": 0.25082,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.04029,
+        "recall@10": 0.032637,
+        "mrr@10": 0.087136,
+        "hit@10": 0.216393,
+        "n_users": 610
+      }
+    },
+    "Popularity": {
+      "valid": {
+        "ndcg@10": 0.052129,
+        "recall@10": 0.036246,
+        "mrr@10": 0.111153,
+        "hit@10": 0.232787,
+        "n_users": 610
+      },
+      "test": {
+        "ndcg@10": 0.043923,
+        "recall@10": 0.03347,
+        "mrr@10": 0.089078,
+        "hit@10": 0.201639,
+        "n_users": 610
+      }
+    }
+  }
+}

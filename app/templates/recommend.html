@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}个性化推荐{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="section-head">
+    <div>
+      <h2>个性化推荐</h2>
+      <p class="muted">选择用户与算法，对比不同策略给出的推荐结果与推荐理由</p>
+    </div>
+  </div>
+
+  <div class="control-bar">
+    <label class="field">
+      <span>用户</span>
+      <select id="userSelect"></select>
+    </label>
+    <label class="field">
+      <span>推荐算法</span>
+      <select id="algoSelect">
+        <option value="hybrid">融合推荐（线上默认）</option>
+        <option value="content">基于内容</option>
+        <option value="pop">热门榜</option>
+        <option value="LightGCN">LightGCN 图卷积</option>
+        <option value="ItemKNN">ItemKNN 协同过滤</option>
+        <option value="FREEDOM">FREEDOM 多视图融合</option>
+      </select>
+    </label>
+    <label class="field">
+      <span>数量</span>
+      <select id="kSelect">
+        <option>12</option><option>20</option><option>30</option>
+      </select>
+    </label>
+    <button class="btn primary" id="runBtn">生成推荐</button>
+  </div>
+
+  <div class="source-line" id="sourceLine"></div>
+  <div class="grid" id="recGrid">
+    <div class="loading">选择条件后点击「生成推荐」</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>该用户的历史行为</h2></div>
+  <div class="history" id="historyList"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>App.initRecommend();</script>
+{% endblock %}

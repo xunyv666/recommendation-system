@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于 · RecSys 2026</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f7cff'/%3E%3Ctext x='16' y='22' font-size='13' text-anchor='middle' fill='white' font-family='Arial'%3ERS%3C/text%3E%3C/svg%3E">
+</head>
+<body data-dataset="movielens">
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/?dataset=movielens">
+      <span class="brand-mark">RS</span>
+      <span class="brand-text">智能推荐系统<small>Courses Design 2026</small></span>
+    </a>
+    <nav class="nav">
+      <a href="/?dataset=movielens"   class="">首页</a>
+      <a href="/recommend?dataset=movielens" class="">个性化推荐</a>
+      <a href="/dashboard?dataset=movielens" class="">算法看板</a>
+      <a href="/about" class="on">关于</a>
+    </nav>
+    <div class="domain-switch">
+      <button data-ds="movielens" class="on">电影</button>
+      <button data-ds="goodbooks" class="">图书</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  
+<section class="section">
+  <div class="prose">
+    <h1 style="font-size:30px;margin-bottom:8px">关于本系统</h1>
+    <p><span class="badge">课程设计</span></p>
+
+    <h2>一、系统定位</h2>
+    <p>本系统是一个面向<strong>电影</strong>与<strong>图书</strong>两个应用场景的通用推荐系统。
+       用户可选择感兴趣的领域，获得个性化推荐、查看物品详情与相似推荐，
+       并在算法看板中对比不同推荐模型的离线评测效果。</p>
+
+    <h2>二、技术架构</h2>
+    <ul>
+      <li><b>前端</b>：原生 HTML/CSS/JS，零外部依赖，可独立部署为静态站点</li>
+      <li><b>后端</b>：Flask 提供 REST API，Waitress 作生产 WSGI 服务器</li>
+      <li><b>算法层</b>：基于开源推荐算法平台 RecBole 统一训练与评测</li>
+      <li><b>存储</b>：SQLAlchemy + SQLite（开发）/ MySQL（生产）</li>
+      <li><b>部署</b>：GitHub → Cloudflare Pages（前端）+ Cloudflare Tunnel（后端）</li>
+    </ul>
+
+    <h2>三、推荐流程</h2>
+    <p>系统采用<strong>离线训练 + 在线查表</strong>的两段式架构：</p>
+    <ul>
+      <li><b>离线阶段</b>：在历史交互上训练图卷积等模型，为每个用户预生成 Top-N 推荐并落库；
+          同时计算物品的内容相似度矩阵</li>
+      <li><b>在线阶段</b>：直接查询预计算结果，叠加内容画像召回与热度兜底，
+          hybrid 模式再经 MMR 多样性重排，实现毫秒级响应，无需 GPU</li>
+    </ul>
+
+    <h2>四、算法说明</h2>
+    <ul>
+      <li><b>LightGCN</b>：在用户-物品二部图上做线性传播，去掉非线性变换，效果好且训练快</li>
+      <li><b>SGL / NCL</b>：引入自监督对比学习，缓解交互稀疏下的表征退化</li>
+      <li><b>ItemKNN</b>：基于物品共现的经典协同过滤，作为强基线</li>
+      <li><b>EASE</b>：闭式解的线性自编码器，在稀疏数据上往往强于深度模型</li>
+      <li><b>FREEDOM（本文）</b>：多视图图融合——协同图传播 + 内容图传播，跨视图对比对齐，自适应融合</li>
+      <li><b>基于内容</b>：TF-IDF 文本语义 + 类别 multi-hot + 结构化特征，解决冷启动</li>
+      <li><b>融合与重排</b>：多路召回归一化融合，再用 MMR 做多样性重排，可选大模型生成推荐理由</li>
+    </ul>
+
+    <h2>五、数据集</h2>
+    <ul>
+      <li><b>MovieLens</b>（电影，在线演示）：610 用户 / 9,724 电影 / 100,836 条评分</li>
+      <li><b>Goodbooks-10k</b>（图书，在线演示）：10,000 图书 / 5,976,479 条评分，
+          演示库取交互最活跃的 4,000 名用户</li>
+      <li><b>Book-Crossing</b>（图书，大规模对照）：22,593 用户 / 257,815 图书 / 929,723 条评分</li>
+    </ul>
+
+    <p style="margin-top:26px;color:#8b98af;font-size:13px">
+      © 2026 推荐系统课程设计 · 南京财经大学
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>推荐系统课程设计 · 南京财经大学</span>
+    <span class="dot">·</span>
+    <span>离线训练 + 在线查表架构</span>
+    <span class="dot">·</span>
+    <span id="healthTag">服务状态检测中…</span>
+  </div>
+</footer>
+
+<script src="/static/js/static-api.js"></script>
+<script src="/static/js/app.js"></script>
+
+</body>
+</html>

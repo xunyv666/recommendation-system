@@ -1,0 +1,34 @@
+{
+  "movielens": {
+    "dataset": "movielens",
+    "n_users": 120,
+    "lambda": 0.6,
+    "pool_size": 60,
+    "k": 20,
+    "intra_sim_before": 0.7861603348463407,
+    "intra_sim_after": 0.7753697868966891,
+    "dominant_share_before": 0.5500000000000002,
+    "dominant_share_after": 0.51375,
+    "genre_coverage_before": 13.675,
+    "genre_coverage_after": 14.416666666666666,
+    "relevance_before": 0.6980557330141985,
+    "relevance_after": 0.6879888277565581,
+    "relevance_retention": 0.9855786511283682
+  },
+  "goodbooks": {
+    "dataset": "goodbooks",
+    "n_users": 60,
+    "lambda": 0.6,
+    "pool_size": 60,
+    "k": 20,
+    "intra_sim_before": 0.7490910597903705,
+    "intra_sim_after": 0.7430482351647536,
+    "dominant_share_before": 1.0,
+    "dominant_share_after": 1.0,
+    "genre_coverage_before": 59.95,
+    "genre_coverage_after": 63.68333333333333,
+    "relevance_before": 0.6182098592944116,
+    "relevance_after": 0.6122447213678164,
+    "relevance_retention": 0.990350949864495
+  }
+}

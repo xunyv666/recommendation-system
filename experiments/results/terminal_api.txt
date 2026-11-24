@@ -1,0 +1,36 @@
+PS E:\recsys> curl.exe -s "http://127.0.0.1:8080/api/recommend/1?dataset=movielens&algo=hybrid&k=2"
+{
+  "algo": "hybrid",
+  "dataset": "movielens",
+  "items": [
+    {
+      "avg_rating": 3.556,
+      "description": "",
+      "genres": "action|crime|thriller",
+      "id": 165,
+      "image_url": "",
+      "n_ratings": 144,
+      "popularity": 7.077441,
+      "reason": "综合多路召回信号后排序靠前，题材同属「Action」，评分 3.6（144 人评）",
+      "score": 5.678916,
+      "title": "Die Hard: With a Vengeance (1995)",
+      "year": 1995
+    },
+    {
+      "avg_rating": 4.106,
+      "description": "",
+      "genres": "adventure|fantasy",
+      "id": 4993,
+      "image_url": "",
+      "n_ratings": 198,
+      "popularity": 8.068692,
+      "reason": "综合多路召回信号后排序靠前，题材同属「Adventure」，评分 4.1（198 人评）",
+      "score": 5.635523,
+      "title": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "year": 2001
+    }
+  ],
+  "rerank": "mmr",
+  "source": "precomputed:hybrid",
+  "user_id": 1
+}
