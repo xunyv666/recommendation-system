@@ -1,0 +1,30 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}用户管理{% endblock %}
+{% block crumb %}用户管理{% endblock %}
+{% block content %}
+<div class="admin-head">
+  <div><h1>用户管理</h1><p class="muted">按数据集浏览参与评测 / 演示的用户</p></div>
+  <div class="ds-tabs">
+    {% for d in ['movielens', 'goodbooks', 'bookcrossing'] %}
+      <a class="{{ 'on' if ds == d }}" href="{{ url_for('admin.users', dataset=d) }}">{{ d }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<form class="admin-filter" method="get">
+  <input type="hidden" name="dataset" value="{{ ds }}">
+  <input type="text" name="q" value="{{ q }}" placeholder="按用户 ID 精确查找…">
+  <button class="btn ghost sm" type="submit">搜索</button>
+</form>
+
+<section class="admin-card">
+  <table class="admin-table"><thead><tr><th>ID</th><th>数据集</th><th>领域</th><th>评分数</th><th>平均评分</th></tr></thead>
+    <tbody>{% for u in rows %}<tr>
+      <td>#{{ u.id }}</td><td><span class="tag">{{ u.dataset }}</span></td><td>{{ u.domain }}</td>
+      <td>{{ '{:,}'.format(u.n_ratings or 0) }}</td><td>{{ '%.3f'|format(u.avg_rating or 0) }}</td>
+    </tr>{% else %}<tr><td colspan="5" class="empty">没有匹配的用户</td></tr>{% endfor %}</tbody>
+  </table>
+  {% set base_q = 'dataset=' ~ ds ~ '&q=' ~ q ~ '&' %}
+  {% include "admin/_pager.html" %}
+</section>
+{% endblock %}

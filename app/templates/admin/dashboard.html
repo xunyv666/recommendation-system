@@ -1,0 +1,41 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}总览{% endblock %}
+{% block crumb %}总览{% endblock %}
+{% block content %}
+<div class="admin-head">
+  <div><h1>系统总览</h1><p class="muted">数据与服务的实时快照（来自 SQLite 生产库）</p></div>
+</div>
+
+<div class="stat-grid">
+  <div class="admin-card stat-card"><span>物品总数</span><b>{{ '{:,}'.format(counts.n_items) }}</b></div>
+  <div class="admin-card stat-card"><span>用户总数</span><b>{{ '{:,}'.format(counts.n_users) }}</b></div>
+  <div class="admin-card stat-card"><span>评分记录</span><b>{{ '{:,}'.format(counts.n_ratings) }}</b></div>
+  <div class="admin-card stat-card"><span>预计算推荐</span><b>{{ '{:,}'.format(counts.n_recs) }}</b></div>
+  <div class="admin-card stat-card"><span>行为日志</span><b>{{ '{:,}'.format(counts.n_feedback) }}</b></div>
+  <div class="admin-card stat-card"><span>评测指标</span><b>{{ '{:,}'.format(counts.n_metrics) }}</b></div>
+</div>
+
+<div class="admin-cols">
+  <section class="admin-card">
+    <h2>数据集分布</h2>
+    <table class="admin-table"><thead><tr><th>数据集</th><th>物品数</th></tr></thead>
+      <tbody>{% for ds, n in by_ds %}<tr><td><span class="tag">{{ ds }}</span></td><td>{{ '{:,}'.format(n) }}</td></tr>{% endfor %}</tbody>
+    </table>
+    <h2 style="margin-top:22px">中文译名覆盖</h2>
+    <table class="admin-table"><thead><tr><th>数据集</th><th>已翻译</th></tr></thead>
+      <tbody>{% for ds, n in zh_counts.items() %}<tr><td><span class="tag">{{ ds }}</span></td><td>{{ n }}</td></tr>{% endfor %}</tbody>
+    </table>
+  </section>
+  <section class="admin-card">
+    <h2>最近行为日志</h2>
+    {% if recent %}
+      <table class="admin-table"><thead><tr><th>ID</th><th>用户</th><th>物品</th><th>动作</th><th>算法</th></tr></thead>
+        <tbody>{% for r in recent %}<tr>
+          <td>#{{ r.id }}</td><td>{{ r.user_id }}</td><td>{{ r.item_id }}</td>
+          <td><span class="tag">{{ r.action }}</span></td><td>{{ r.algo or '—' }}</td>
+        </tr>{% endfor %}</tbody></table>
+    {% else %}<p class="muted">暂无行为日志。</p>{% endif %}
+    <div class="admin-actions"><a class="btn ghost" href="{{ url_for('admin.feedback') }}">查看全部日志 →</a></div>
+  </section>
+</div>
+{% endblock %}

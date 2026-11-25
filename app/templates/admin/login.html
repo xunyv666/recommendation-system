@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>后台登录 · RecSys 2026</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="admin-body login-body">
+  <div class="login-card glass-card">
+    <div class="login-mark">RS</div>
+    <h1>管理后台登录</h1>
+    <p class="muted">推荐系统课程设计 · 数据与模型管理入口</p>
+    {% if err %}<div class="flash err">{{ err }}</div>{% endif %}
+    <form method="post" class="login-form">
+      <input type="hidden" name="next" value="{{ next }}">
+      <label>访问密码</label>
+      <input type="password" name="password" placeholder="请输入管理员密码" autofocus required>
+      <button class="btn primary" type="submit">登录</button>
+    </form>
+    <p class="login-tip">演示环境默认密码 <code>recsys2026</code>；生产环境请设置环境变量 ADMIN_PASSWORD。</p>
+    <a class="back-link" href="/?dataset=movielens">← 返回前台网站</a>
+  </div>
+</body>
+</html>

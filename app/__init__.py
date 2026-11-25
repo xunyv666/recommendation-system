@@ -24,7 +24,9 @@ def create_app(database_url: str | None = None) -> Flask:
     db.init_app(app)
 
     from .api import api
+    from .admin import admin
     app.register_blueprint(api)
+    app.register_blueprint(admin)
 
     # ------------------------------------------------------------ 页面路由
     @app.get("/")

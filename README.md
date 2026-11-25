@@ -73,6 +73,17 @@ report/              课程设计报告
 
 完整实验分析见 `report/2020601616.docx`（同目录提供 `.doc` 与 `.pdf`）。
 
+## 中文交互与管理后台
+
+- 前台默认中文，顶栏 `EN / 中文` 可随时切换，偏好保存在浏览器本地。
+- 电影 / 图书标题优先显示中文译名库（`data/processed/titles_zh.json`，前后台共用）；
+  未入库的标题由前端本地词典即时翻译，保证中文模式下每条都有中文可读。
+- 扩充译名：`python scripts/14_expand_zh_titles.py --all --top 800`（MyMemory 批量接口，可续跑）。
+- 管理后台：`python run.py` 后访问 `http://127.0.0.1:5000/admin/`。
+  演示密码 `recsys2026`（生产环境请用环境变量 `ADMIN_PASSWORD` 覆盖）。
+  后台提供数据总览、物品 / 用户浏览、推荐结果预览、行为日志删除、算法指标，
+  以及中文译名的在线维护（保存后同时更新 Flask 与静态镜像的译名表）。
+
 ## 说明
 
 - RecBole 1.2.0 与 numpy≥2、scipy≥1.13 不兼容，`requirements.txt` 已锁定可用版本。

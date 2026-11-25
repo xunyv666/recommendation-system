@@ -1,0 +1,49 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}中文译名{% endblock %}
+{% block crumb %}中文译名{% endblock %}
+{% block content %}
+<div class="admin-head">
+  <div><h1>中文译名维护</h1>
+    <p class="muted">保存后同时写入 data/processed 与 site/data，前台切换「中文」立即生效</p></div>
+  <div class="ds-tabs">
+    {% for d in ['movielens', 'goodbooks', 'bookcrossing'] %}
+      <a class="{{ 'on' if ds == d }}" href="{{ url_for('admin.translations', dataset=d) }}">{{ d }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="admin-card coverage">
+  <div><span>已翻译条目</span><b>{{ '{:,}'.format(coverage) }}</b></div>
+  <div><span>数据集物品总数</span><b>{{ '{:,}'.format(total) }}</b></div>
+  <div><span>覆盖率</span><b>{{ '%.1f'|format(coverage * 100 / (total or 1)) }}%</b></div>
+</div>
+
+<form class="admin-filter" method="get">
+  <input type="hidden" name="dataset" value="{{ ds }}">
+  <input type="text" name="q" value="{{ q }}" placeholder="按标题或 ID 查找条目…">
+  <button class="btn ghost sm" type="submit">搜索</button>
+</form>
+
+<section class="admin-card">
+  <table class="admin-table"><thead><tr><th>ID</th><th>原标题</th><th>中文译名</th><th>操作</th></tr></thead>
+    <tbody>{% for it in rows %}<tr>
+      <td>#{{ it.id }}</td>
+      <td class="ellip" title="{{ it.title }}">{{ it.title }}</td>
+      <td>
+        <form method="post" class="zh-form">
+          <input type="hidden" name="dataset" value="{{ ds }}">
+          <input type="hidden" name="item_id" value="{{ it.id }}">
+          <input type="hidden" name="q" value="{{ q }}">
+          <input type="text" name="title_zh" value="{{ zh.get(it.id|string, '') }}" placeholder="输入中文译名">
+          <button class="btn primary sm" type="submit">保存</button>
+        </form>
+      </td>
+      <td class="nowrap">
+        <a class="link" href="{{ url_for('admin.item_detail', dataset=ds, item_id=it.id) }}">详情</a>
+      </td>
+    </tr>{% else %}<tr><td colspan="4" class="empty">没有匹配的物品</td></tr>{% endfor %}</tbody>
+  </table>
+  {% set base_q = 'dataset=' ~ ds ~ '&q=' ~ q ~ '&' %}
+  {% include "admin/_pager.html" %}
+</section>
+{% endblock %}

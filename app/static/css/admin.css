@@ -1,0 +1,127 @@
+/* 管理后台样式：复用 style.css 的配色变量，独立布局 */
+.admin-body{display:block;background:var(--bg)}
+.admin-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(900px 420px at 80% -10%,rgba(139,92,246,.12),transparent 60%)}
+
+/* ---------- 侧栏 ---------- */
+.admin-side{position:fixed;top:0;left:0;bottom:0;width:218px;padding:22px 14px;
+  background:rgba(17,21,31,.94);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:24px;z-index:20}
+.admin-brand{display:flex;align-items:center;gap:11px;padding:0 6px}
+.admin-brand b{display:block;font-size:15px}
+.admin-brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.5px}
+.admin-nav{display:flex;flex-direction:column;gap:3px}
+.admin-nav a{display:flex;align-items:center;gap:11px;padding:10px 13px;border-radius:10px;
+  color:var(--muted);font-size:13.5px;transition:.18s}
+.admin-nav a i{font-style:normal;width:18px;text-align:center;font-size:15px}
+.admin-nav a:hover{background:var(--card);color:var(--fg)}
+.admin-nav a.on{color:#fff;background:linear-gradient(135deg,rgba(91,140,255,.24),rgba(139,92,246,.24));
+  box-shadow:inset 0 0 0 1px rgba(91,140,255,.3)}
+.admin-side-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding:14px 8px 0;
+  border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.admin-side-foot a:hover{color:var(--fg)}
+.link-btn{border:0;background:none;color:var(--muted);cursor:pointer;font:inherit;text-align:left;padding:0}
+.link-btn:hover{color:var(--fg)}
+.link-btn.danger{color:#ff8a8a}
+.link-btn.danger:hover{color:#ff5c5c}
+
+/* ---------- 主区 ---------- */
+.admin-main{margin-left:218px;min-height:100vh}
+.admin-top{height:60px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;border-bottom:1px solid var(--line);background:rgba(11,14,21,.7);
+  backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+.admin-crumb{color:var(--muted);font-size:13px}
+.admin-user{font-size:12.5px;padding:5px 12px;border-radius:20px;background:var(--card);
+  border:1px solid var(--line)}
+.admin-content{padding:30px 32px 60px;max-width:1400px}
+.admin-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;
+  margin-bottom:22px;flex-wrap:wrap}
+.admin-head h1{font-size:25px;font-weight:750;letter-spacing:-.3px}
+.admin-card{background:linear-gradient(160deg,rgba(28,34,48,.9),rgba(22,27,39,.85));
+  border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow)}
+.admin-card h2{font-size:15px;margin-bottom:14px;font-weight:700}
+.flash{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35);
+  color:#a7f3d0;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:16px}
+.flash.err{background:rgba(251,113,133,.12);border-color:rgba(251,113,133,.4);color:#fecdd3}
+
+/* ---------- 统计卡 ---------- */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.stat-grid.four{grid-template-columns:repeat(4,1fr)}
+.stat-card{display:flex;flex-direction:column;gap:4px;padding:17px 20px}
+.stat-card span{color:var(--muted);font-size:12px}
+.stat-card b{font-size:25px;font-weight:800;letter-spacing:-.5px;
+  background:linear-gradient(135deg,#8eb2ff,#c19bff);-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+.admin-cols{display:grid;grid-template-columns:1fr 1.2fr;gap:18px}
+.coverage{display:flex;gap:48px;margin-bottom:18px}
+.coverage div{display:flex;flex-direction:column}
+.coverage span{color:var(--muted);font-size:12px}
+.coverage b{font-size:22px}
+
+/* ---------- 表格 ---------- */
+.admin-table{width:100%;border-collapse:collapse;font-size:13px}
+.admin-table th{color:var(--muted);font-weight:600;text-align:left;padding:10px 9px;
+  border-bottom:1px solid var(--line);white-space:nowrap}
+.admin-table td{padding:10px 9px;border-bottom:1px solid rgba(36,44,61,.65);vertical-align:middle}
+.admin-table tr:last-child td{border-bottom:0}
+.admin-table tbody tr:hover{background:rgba(91,140,255,.05)}
+.admin-table .empty{text-align:center;color:var(--muted);padding:28px}
+.ellip{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zh{color:#a7c4ff}
+.nowrap{white-space:nowrap}
+.kv-table th{width:110px;color:var(--muted)}
+.kv-table td{color:#dbe4f6}
+.link{color:var(--accent);font-size:13px;cursor:pointer}
+.link:hover{text-decoration:underline}
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(91,140,255,.15);
+  border:1px solid rgba(91,140,255,.25);color:#b8cbff;font-size:11px;white-space:nowrap}
+
+/* ---------- 筛选 / 翻页 ---------- */
+.admin-filter{display:flex;gap:10px;align-items:center;margin-bottom:16px}
+.admin-filter input[type=text],.admin-filter select,.zh-form input[type=text]{
+  background:var(--bg2);border:1px solid var(--line);border-radius:9px;color:var(--fg);
+  padding:9px 12px;font:inherit;font-size:13px;outline:none}
+.admin-filter input[type=text]{min-width:280px}
+.admin-filter input:focus,.admin-filter select:focus,.zh-form input:focus{
+  border-color:var(--accent)}
+.btn.sm{padding:7px 13px;font-size:12.5px;border-radius:9px}
+.btn.disabled{opacity:.4;pointer-events:none}
+.ds-tabs{display:flex;gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);
+  border-radius:10px;width:max-content;margin-bottom:16px}
+.ds-tabs a{padding:6px 14px;border-radius:7px;color:var(--muted);font-size:12.5px}
+.ds-tabs a.on{background:var(--accent);color:#fff;font-weight:600}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px}
+.pager-links{display:flex;gap:8px}
+.zh-form{display:flex;gap:8px;align-items:center}
+.zh-form input[type=text]{min-width:230px}
+.admin-actions{margin-top:16px}
+
+/* ---------- 登录页 ---------- */
+.login-body{display:grid;place-items:center;min-height:100vh;padding:20px}
+.login-card{width:min(420px,94vw);text-align:center}
+.login-mark{width:52px;height:52px;margin:0 auto 16px;border-radius:15px;display:grid;
+  place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  font-weight:800;letter-spacing:.5px}
+.login-card h1{font-size:21px}
+.login-card .muted{margin-bottom:22px}
+.login-form{display:flex;flex-direction:column;gap:10px;text-align:left}
+.login-form label{font-size:12.5px;color:var(--muted)}
+.login-form input{background:var(--bg2);border:1px solid var(--line);border-radius:10px;
+  color:var(--fg);padding:12px 14px;font:inherit;outline:none}
+.login-form input:focus{border-color:var(--accent)}
+.login-form .btn{margin-top:6px;width:100%}
+.login-tip{margin-top:18px;font-size:11.5px;color:var(--muted)}
+.login-tip code{color:#b8cbff}
+.back-link{display:inline-block;margin-top:14px;font-size:12.5px;color:var(--muted)}
+.back-link:hover{color:var(--fg)}
+
+@media (max-width:900px){
+  .admin-side{position:static;width:100%;height:auto;flex-direction:row;align-items:center;
+    padding:10px 14px;gap:12px;overflow-x:auto}
+  .admin-nav{flex-direction:row}
+  .admin-side-foot{display:none}
+  .admin-main{margin-left:0}
+  .admin-content{padding:20px 14px 50px}
+  .admin-cols,.stat-grid,.stat-grid.four{grid-template-columns:1fr 1fr}
+}

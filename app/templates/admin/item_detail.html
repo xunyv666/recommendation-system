@@ -1,0 +1,37 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}物品详情{% endblock %}
+{% block crumb %}物品管理 / 详情{% endblock %}
+{% block content %}
+<div class="admin-head">
+  <div><h1>#{{ it.id }} {{ it.title }}</h1>
+    <p class="muted">{{ it.dataset }} · {{ it.domain }} · 中文名：{{ zh or '未翻译' }}</p></div>
+  <a class="btn ghost" href="{{ url_for('admin.items', dataset=it.dataset) }}">← 返回列表</a>
+</div>
+
+<div class="stat-grid four">
+  <div class="admin-card stat-card"><span>平均评分</span><b>{{ '%.2f'|format(it.avg_rating or 0) }}</b></div>
+  <div class="admin-card stat-card"><span>评分人数</span><b>{{ '{:,}'.format(it.n_ratings or 0) }}</b></div>
+  <div class="admin-card stat-card"><span>热度分</span><b>{{ '%.3f'|format(it.popularity or 0) }}</b></div>
+  <div class="admin-card stat-card"><span>库内评分数</span><b>{{ '{:,}'.format(n_ratings) }}</b></div>
+</div>
+
+<section class="admin-card">
+  <h2>基础信息</h2>
+  <table class="admin-table kv-table">
+    <tr><th>题材</th><td>{{ (it.genres or '—')|replace('|', ' / ') }}</td></tr>
+    <tr><th>年份</th><td>{{ it.year or '—' }}</td></tr>
+    <tr><th>简介</th><td>{{ it.description or '—' }}</td></tr>
+    <tr><th>封面</th><td class="ellip">{{ it.image_url or '—' }}</td></tr>
+  </table>
+</section>
+
+<section class="admin-card" style="margin-top:18px">
+  <h2>相似物品（内容三视图）</h2>
+  <table class="admin-table"><thead><tr><th>ID</th><th>标题</th><th>相似度</th></tr></thead>
+    <tbody>{% for s, item in sims %}<tr>
+      <td>#{{ item.id }}</td><td>{{ item.title }}</td>
+      <td>{{ '%.4f'|format(s.score or 0) }}</td>
+    </tr>{% else %}<tr><td colspan="3" class="empty">暂无相似度数据</td></tr>{% endfor %}</tbody>
+  </table>
+</section>
+{% endblock %}

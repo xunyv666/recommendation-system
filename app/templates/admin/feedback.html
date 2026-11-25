@@ -1,0 +1,25 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}行为日志{% endblock %}
+{% block crumb %}行为日志{% endblock %}
+{% block content %}
+<div class="admin-head">
+  <div><h1>行为日志</h1><p class="muted">前台点击 / 浏览行为，可用于后续增量训练</p></div>
+</div>
+
+<section class="admin-card">
+  <table class="admin-table"><thead><tr><th>ID</th><th>用户</th><th>物品</th><th>动作</th><th>算法</th><th>位置</th><th>时间</th><th></th></tr></thead>
+    <tbody>{% for r in rows %}<tr>
+      <td>#{{ r.id }}</td><td>{{ r.user_id }}</td><td>{{ r.item_id }}</td>
+      <td><span class="tag">{{ r.action }}</span></td><td>{{ r.algo or '—' }}</td>
+      <td>{{ r.position or 0 }}</td><td>{{ r.created_at or '—' }}</td>
+      <td><form method="post" onsubmit="return confirm('确认删除该日志？')">
+        <input type="hidden" name="id" value="{{ r.id }}">
+        <input type="hidden" name="dataset" value="{{ ds }}">
+        <button class="link-btn danger" type="submit">删除</button>
+      </form></td>
+    </tr>{% else %}<tr><td colspan="8" class="empty">暂无日志</td></tr>{% endfor %}</tbody>
+  </table>
+  {% set base_q = 'dataset=' ~ ds ~ '&' %}
+  {% include "admin/_pager.html" %}
+</section>
+{% endblock %}

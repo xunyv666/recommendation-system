@@ -35,6 +35,9 @@ Thumbs.db
 .env.local
 
 # 人工校对的中文译名表（小文件，需要随仓库走）
+# 中文译名表随仓库提交：目录被整体忽略时，先解除目录再排除其它文件
+!data/processed/
+data/processed/*
 !data/processed/titles_zh.json
 
 # 临时验证截图

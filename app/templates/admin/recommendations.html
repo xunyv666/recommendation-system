@@ -1,0 +1,36 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}推荐结果{% endblock %}
+{% block crumb %}推荐结果{% endblock %}
+{% block content %}
+<div class="admin-head">
+  <div><h1>推荐结果预览</h1><p class="muted">直接查询离线预计算表，与前台 /api/recommend 一致</p></div>
+</div>
+
+<form class="admin-filter" method="get">
+  <input type="hidden" name="dataset" value="{{ ds }}">
+  <select name="user_id">
+    {% for u in users %}<option value="{{ u.id }}" {{ 'selected' if u.id == uid }}>用户 #{{ u.id }}（{{ u.n_ratings }} 条评分）</option>{% endfor %}
+    <option value="{{ uid }}" {{ 'selected' if not users }}>用户 #{{ uid }}</option>
+  </select>
+  <select name="algo">
+    {% for a in algos %}<option value="{{ a }}" {{ 'selected' if a == algo }}>{{ a }}</option>{% endfor %}
+  </select>
+  <button class="btn ghost sm" type="submit">查询</button>
+</form>
+
+<div class="ds-tabs">
+  {% for d in ['movielens', 'goodbooks', 'bookcrossing'] %}
+    <a class="{{ 'on' if ds == d }}" href="{{ url_for('admin.recommendations', dataset=d, user_id=uid, algo=algo) }}">{{ d }}</a>
+  {% endfor %}
+</div>
+
+<section class="admin-card">
+  <table class="admin-table"><thead><tr><th>排名</th><th>ID</th><th>标题</th><th>题材</th><th>得分</th><th>推荐理由</th></tr></thead>
+    <tbody>{% for rec, item in rows %}<tr>
+      <td>{{ rec.rank }}</td><td>#{{ item.id }}</td><td class="ellip">{{ item.title }}</td>
+      <td class="ellip">{{ ((item.genres or '')|replace('|', ' / '))[:36] }}</td>
+      <td>{{ '%.4f'|format(rec.score or 0) }}</td><td class="ellip">{{ rec.reason or '—' }}</td>
+    </tr>{% else %}<tr><td colspan="6" class="empty">该用户 / 算法组合暂无预计算推荐结果</td></tr>{% endfor %}</tbody>
+  </table>
+</section>
+{% endblock %}

@@ -403,6 +403,10 @@ def main() -> None:
             json.dumps(table, ensure_ascii=False), encoding="utf-8")
     if (C.RESULTS / "llm_demo.json").exists():
         shutil.copy(C.RESULTS / "llm_demo.json", SITE / "data" / "llm_demo.json")
+    # 中文译名表：Flask 与静态镜像共用同一份，避免重建站点后中文标题丢失
+    if (C.ROOT / "data" / "processed" / "titles_zh.json").exists():
+        shutil.copy(C.ROOT / "data" / "processed" / "titles_zh.json",
+                    SITE / "data" / "titles_zh.json")
 
     shutil.copytree(C.ROOT / "app" / "static", SITE / "static", dirs_exist_ok=True)
     (SITE / "static" / "js" / "static-api.js").write_text(STATIC_API, encoding="utf-8")

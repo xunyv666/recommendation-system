@@ -75,8 +75,9 @@
     const body = el("div", "card-body");
     // 无封面时把序号/分数放在标题上方单独一行，避免绝对定位压住标题
     if (flags && flags.children.length) body.appendChild(flags);
-    const showZh = I18N.lang === "zh" && item.title_zh;
-    const titleEl = el("div", "card-title", esc(showZh ? item.title_zh : item.title));
+    const zh = window.I18N ? I18N.itemTitle(item) : (document.documentElement.lang === "zh-CN" ? item.title_zh : "");
+    const showZh = I18N.lang === "zh" && zh && zh !== item.title;
+    const titleEl = el("div", "card-title", esc(showZh ? zh : item.title));
     if (showZh) titleEl.title = item.title;
     body.appendChild(titleEl);
 
@@ -310,8 +311,9 @@
     const root = $("#detailRoot");
     try {
       const d = await get(`/api/items/${itemId}?dataset=${DS}`);
-      const showZh = I18N.lang === "zh" && d.title_zh;
-      const titleText = showZh ? d.title_zh : d.title;
+      const zh = window.I18N ? I18N.itemTitle(d) : (document.documentElement.lang === "zh-CN" ? d.title_zh : "");
+      const showZh = I18N.lang === "zh" && zh && zh !== d.title;
+      const titleText = showZh ? zh : d.title;
       root.innerHTML = `
         <div class="detail${d.image_url ? "" : " no-cover"}">
           ${
